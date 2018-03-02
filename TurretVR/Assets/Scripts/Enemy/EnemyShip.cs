@@ -49,7 +49,6 @@ public class EnemyShip : Enemy {
             children[i].isKinematic = false;
             chidrenColliders[i].isTrigger = false;
         }
-
         GameManager.Instance.ShipsCount++;
     }
 
@@ -68,7 +67,7 @@ public class EnemyShip : Enemy {
         }
     }
 
-    public void Die()
+    public override void Die()
     {
         Explode();
         GameManager.Instance.ReduceShips();

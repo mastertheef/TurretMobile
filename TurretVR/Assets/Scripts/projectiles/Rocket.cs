@@ -26,10 +26,10 @@ public class Rocket : Projectile {
         StartCoroutine(Move());
 	}
 	
-    private void OnCollisionEnter(Collision collision)
+    private new void OnCollisionEnter(Collision collision)
     {
         string colTag = collision.gameObject.tag;
-        if (colTag == "EnemyShip" || colTag == "Asteroid")
+        if (colTag == "EnemyShip")
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             StartCoroutine(Explode());
@@ -47,8 +47,8 @@ public class Rocket : Projectile {
 
     private GameObject FindNearestTarget()
     {
-        List<GameObject> allEnemies = GameObject.FindGameObjectsWithTag("Asteroid").ToList();
-        allEnemies.AddRange(GameObject.FindGameObjectsWithTag("EnemyShip").ToList());
+        List<GameObject> allEnemies = //GameObject.FindGameObjectsWithTag("Asteroid").ToList();
+        GameObject.FindGameObjectsWithTag("EnemyShip").ToList();
         allEnemies.AddRange(GameObject.FindGameObjectsWithTag("Boss").ToList());
 
         List<GameObject> allVisible = GetAllOnScreen(allEnemies);

@@ -23,7 +23,6 @@ public class Asteroid : Enemy
     private void FixedUpdate()
     {
         transform.Rotate(rotationDirection, rotationSpeed);
-        StartCoroutine(MoveToPlayer());
     }
 
     private void OnCollisionEnter(Collision other)

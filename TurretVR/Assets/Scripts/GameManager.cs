@@ -91,14 +91,19 @@ public class GameManager : Singleton<GameManager>
         score = 0;
         activeAsteroids = 0;
         activeShips = 0;
+        SpawnAsteroids();
         StartCoroutine(Spawn());
         SoundManager.Instance.PlayBackground();
+
     }
 
     private void SpawnEnemy()
     {
         if (CountDown > 0 && (activeShips < maxActiveShips || activeAsteroids < maxActiveAsteroids))
         {
+            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight), 0);
+            var newPosition = player.transform.position + randAng * player.transform.forward * Random.Range(300, spawnDistance);
+
             int enemyIndex = 0;
             if (activeShips >= maxActiveShips)
             {
@@ -113,8 +118,7 @@ public class GameManager : Singleton<GameManager>
                 enemyIndex = Random.Range(0, enemies.Count);
             }
 
-            Enemy enemy = Instantiate(enemies[enemyIndex]);
-            
+            Enemy enemy = Instantiate(enemies[enemyIndex], newPosition, enemies[enemyIndex].transform.rotation);
 
             if (enemy.tag == "Asteroid")
             {
@@ -124,11 +128,21 @@ public class GameManager : Singleton<GameManager>
             {
                 activeShips++;
             }
-            
-            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight),  0);
-            var newPosition = transform.position + randAng * Vector3.forward * spawnDistance;
-            enemy.transform.position = newPosition;
-            IndicatorManager.Instance.AddIndicator(enemy.transform);
+
+            if (enemy.tag != "Asteroid")
+            {
+                IndicatorManager.Instance.AddIndicator(enemy.transform);
+            }
+        }
+    }
+
+    private void SpawnAsteroids()
+    {
+        activeAsteroids = maxActiveAsteroids;
+        for (int i = 0; i<maxActiveAsteroids; i++)
+        {
+            Vector3 newPosition = Random.insideUnitSphere * Random.Range(50, 2000);
+            Instantiate(enemies[0], newPosition, Quaternion.identity);
         }
     }
 
@@ -138,11 +152,11 @@ public class GameManager : Singleton<GameManager>
         {
             if (gameTime >= bossSpawnSecond && !mothershipSpawned) 
             {
-                Instantiate(MotherShipPrefab);
+                var mothership = Instantiate(MotherShipPrefab);
                 mothershipSpawned = true;
                 SoundManager.Instance.PlayBoss();
-
-                yield return new WaitForSeconds(spawnDelayAfterBoss);
+                IndicatorManager.Instance.AddIndicator(mothership.transform);
+                //yield return new WaitForSeconds(spawnDelayAfterBoss);
             }
 
             SpawnEnemy();

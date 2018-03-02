@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     [SerializeField] private Explosion explosion;
     [SerializeField] protected float hitPoints = 12;
@@ -16,8 +17,12 @@ public class Enemy : MonoBehaviour {
     protected bool isExploded = false;
 
     public bool IsExploded { get { return isExploded; } }
+    public virtual void Die()
+    {
+        Explode();
+    }
 
-        protected virtual void Explode()
+    protected virtual void Explode()
     {
         if (!isExploded)
         {
@@ -41,16 +46,11 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void DestroyIt()
-    {
-        this.Explode();
-    }
-
     protected void ExplodeIfKilled()
     {
         if (hitPoints <= 0 && !isExploded)
         {
-            Explode();
+            Die();
         }
     }
 

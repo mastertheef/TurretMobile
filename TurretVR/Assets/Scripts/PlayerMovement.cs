@@ -1,30 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour {
 
-    [SerializeField] private float speed = 0;
-    [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] private float maxSpeed = 20f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float rotationSpeed = 0.1f;
+    [SerializeField] private Slider speedSlider;
 
     private const float lowPassFilterFactor = 0.2f;
     private float pitch, yaw;
+    private Rigidbody rigidBody;
+    float velocity = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        rigidBody = GetComponent<Rigidbody>();
+        speedSlider.maxValue = maxSpeed;
+        
+        //speedSlider.onValueChanged+=
+        
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+        yaw = Mathf.Tan(CrossPlatformInputManager.GetAxis("Horizontal")) * rotationSpeed;
+        pitch = Mathf.Tan(-CrossPlatformInputManager.GetAxis("Vertical")) * rotationSpeed;
+        
+        transform.Rotate(pitch, yaw, 0, Space.Self);
 
+        rigidBody.velocity = transform.forward * speedSlider.value;
+        
+    }
 
-
-        yaw += CrossPlatformInputManager.GetAxis("Horizontal");
-        // yaw = Mathf.Clamp(yaw, -1 * maxEulerAngle, maxEulerAngle);
-        pitch += -CrossPlatformInputManager.GetAxis("Vertical");
-        // pitch = Mathf.Clamp(pitch, -1 * maxEulerAngle, maxEulerAngle);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(pitch, yaw, 0), rotationSpeed);
+    private Quaternion GetRotation(float yaw, float pitch)
+    {
+        if (transform.rotation.x <= -0.5f)
+        {
+            return Quaternion.Euler(0, pitch, -yaw);
+        }
+        return Quaternion.Euler(pitch, yaw, 0);
     }
 }
