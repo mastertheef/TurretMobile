@@ -25,11 +25,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int maxActiveShips = 3;
 
     [Header("Game")]
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Camera gameCamera;
     [SerializeField] private float gameDuration = 90f;
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text gameTimerLabel;
+    [SerializeField] private Canvas ui;
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
@@ -43,6 +44,9 @@ public class GameManager : Singleton<GameManager>
     private int activeShips;
 
     public GameObject Player { get { return player; } }
+
+    public Camera GameCamera { get { return gameCamera; } }
+    public Canvas UI { get { return ui; } }
 
     public int AsteroidsCount
     {

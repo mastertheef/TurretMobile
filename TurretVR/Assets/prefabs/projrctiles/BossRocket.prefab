@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShotMaxRange: 500
   ShotSpeed: 1
-  damage: 10
+  damage: 50
   HitEffect: {fileID: 0}
   debuf: {fileID: 0}
   ExplosionPrefab: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,

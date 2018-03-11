@@ -7,12 +7,15 @@ using UnityEngine;
 public class Rocket : Projectile {
 
     [SerializeField] private Explosion explosion;
+    [SerializeField] private float ttl = 10;
     private GameObject target;
     private bool isExploded = false;
     private float motherShipOffset;
+    private Camera gameCamera;
 
 	// Use this for initialization
 	void Start () {
+        gameCamera = GameManager.Instance.GameCamera;
         motherShipOffset = 0f;
         target = FindNearestTarget();
         if (target != null)
@@ -21,10 +24,17 @@ public class Rocket : Projectile {
         }
         else
         {
-            transform.rotation = Camera.main.transform.rotation;
+            transform.rotation = GameManager.Instance.Player.transform.rotation;
         }
         StartCoroutine(Move());
+        StartCoroutine(TimeToLive());
 	}
+
+    private IEnumerator TimeToLive()
+    {
+        yield return new WaitForSeconds(ttl);
+        StartCoroutine(Explode());
+    }
 	
     private new void OnCollisionEnter(Collision collision)
     {
@@ -59,7 +69,7 @@ public class Rocket : Projectile {
     {
         for (int i = allEnemies.Count - 1; i >= 0; i--)
         {
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(allEnemies[i].transform.position);
+            Vector3 screenPoint = gameCamera.WorldToViewportPoint(allEnemies[i].transform.position);
             var enemy = allEnemies[i].GetComponent<Enemy>();
             
             if (enemy == null || !IsOnScreen(screenPoint) || enemy.IsExploded)
