@@ -160,10 +160,10 @@ public class GameManager : Singleton<GameManager>
                 mothershipSpawned = true;
                 SoundManager.Instance.PlayBoss();
                 IndicatorManager.Instance.AddIndicator(mothership.transform);
-                //yield return new WaitForSeconds(spawnDelayAfterBoss);
+                yield return new WaitForSeconds(spawnDelayAfterBoss);
             }
 
-            SpawnEnemy();
+            // SpawnEnemy();
             float spawnDelay = Random.Range(spawnDelayRange[0], spawnDelayRange[1]);
             yield return new WaitForSeconds(spawnDelay);
         }

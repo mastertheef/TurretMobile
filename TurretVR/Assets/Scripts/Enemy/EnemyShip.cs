@@ -24,10 +24,8 @@ public class EnemyShip : Enemy {
 	// Use this for initialization
 	void Start () {
         player = GameManager.Instance.Player.transform;
-       // float left = Random.Range(moveScatter * (-2), moveScatter * (-1));
-        //targetPoint = (Vector3.zero - transform.position) + Random.insideUnitSphere * moveScatter;
-        //transform.rotation = Quaternion.LookRotation(targetPoint.normalized);
-	}
+        IndicatorManager.Instance.AddIndicator(transform);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +48,7 @@ public class EnemyShip : Enemy {
             chidrenColliders[i].isTrigger = false;
         }
         GameManager.Instance.ShipsCount++;
+        SpawnPoint.RemoveEnemy(this);
     }
 
     private void Shoot()
@@ -80,13 +79,6 @@ public class EnemyShip : Enemy {
         {
             Shoot();
         }
-
-        //if (fliedAway())
-        //{
-        //    IndicatorManager.Instance.RemoveIndicator(transform);
-        //    Destroy(gameObject);
-        //}
-        // StartCoroutine(Fly());
     }
 
     private bool isInFront()

@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c58d32721c10f40801ceb3c74dd2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotMaxRange: 1000
+  ShotMaxRange: 300
   ShotSpeed: 50
   damage: 3
   HitEffect: {fileID: 114620219072588348, guid: e01da2da2cb371446a4cced13cbcbdf6,

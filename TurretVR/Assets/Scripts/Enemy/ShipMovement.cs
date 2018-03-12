@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipMovement : MonoBehaviour {
-    private Transform player;
+    private Transform target;
     [SerializeField] float speed = 0.05f;
     [SerializeField] float turnSpeed = 0.5f;
     [SerializeField] float raycastOffset = 2.5f;
@@ -16,10 +16,12 @@ public class ShipMovement : MonoBehaviour {
     Vector3 virageOffset = Vector3.zero;
     Quaternion virageRotOffset = Quaternion.identity;
 
+    public Transform Target { get { return target; } set { target = value; }  }
+
     private bool makingVirage = false;
 	// Use this for initialization
 	void Start () {
-        player = GameManager.Instance.Player.transform;
+        //target = GetComponent<GenerationPoint>().transform; //GameManager.Instance.Player.transform;
 	}
 	
 	// Update is called once per frame
@@ -32,12 +34,12 @@ public class ShipMovement : MonoBehaviour {
     {
         transform.position += transform.forward * speed * Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, player.position) <= detectoionDistance)
+        if (Vector3.Distance(transform.position, target.position) <= detectoionDistance)
         {
             makingVirage = true;
         }
         
-        if (Vector3.Distance(transform.position, player.position) >= virageDistance)
+        if (Vector3.Distance(transform.position, target.position) >= virageDistance)
         {
             makingVirage = false;
             virageRotOffset = Quaternion.identity;
@@ -47,7 +49,7 @@ public class ShipMovement : MonoBehaviour {
 
     void Turn()
     {
-        Vector3 pos = player.position - transform.position;
+        Vector3 pos = target.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(pos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
     }
