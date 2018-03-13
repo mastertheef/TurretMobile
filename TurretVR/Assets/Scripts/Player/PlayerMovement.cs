@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float rotationSpeed = 0.1f;
     [SerializeField] private Slider speedSlider;
+    [SerializeField] private bool canFly;
+
+    public bool CanFly { get { return canFly; } }
 
     private const float lowPassFilterFactor = 0.2f;
     private float pitch, yaw;
@@ -19,21 +22,23 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-        speedSlider.maxValue = maxSpeed;
-        
-        //speedSlider.onValueChanged+=
-        
+        if (canFly)
+        {
+            speedSlider.maxValue = maxSpeed;
+        }
+        else
+        {
+            speedSlider.enabled = false;
+            speedSlider.transform.localScale = Vector3.zero;
+        }
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //yaw = Mathf.Tan(CrossPlatformInputManager.GetAxis("Horizontal")) * rotationSpeed;
-        //pitch = Mathf.Tan(-CrossPlatformInputManager.GetAxis("Vertical")) * rotationSpeed;
-        
-        //transform.Rotate(pitch, yaw, 0, Space.Self);
-
-        rigidBody.velocity = transform.forward * speedSlider.value;
-        
+        if (canFly)
+        {
+            rigidBody.velocity = transform.forward * speedSlider.value;
+        }
     }
 
     private Quaternion GetRotation(float yaw, float pitch)

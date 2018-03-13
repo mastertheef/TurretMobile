@@ -154,7 +154,7 @@ MonoBehaviour:
   damage: 20
   HitEffect: {fileID: 114620219072588348, guid: e01da2da2cb371446a4cced13cbcbdf6,
     type: 2}
-  debuf: {fileID: 114306065040127470, guid: 1c08bcfe30cdf2f4fbf43e09b0e512d0, type: 2}
+  debuf: {fileID: 0}
 --- !u!114 &114463417209094912
 MonoBehaviour:
   m_ObjectHideFlags: 1

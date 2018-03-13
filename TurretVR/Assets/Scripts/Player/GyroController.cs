@@ -12,7 +12,7 @@ public class GyroController : MonoBehaviour
 	#region [Private fields]
 
     [SerializeField] private float maxEulerAngle = 10f;
-
+   // [SerializeField] private float turretRotationLimitX = 0.05f;
 
     private bool gyroEnabled = true;
 	private const float lowPassFilterFactor = 0.2f;
@@ -32,8 +32,6 @@ public class GyroController : MonoBehaviour
     private float yaw = 0f;
     private float pitch = 0f;
 
-    
-
     #endregion
 
     #region [Unity events]
@@ -43,7 +41,6 @@ public class GyroController : MonoBehaviour
         gyroEnabled = SystemInfo.supportsGyroscope;
         
         AttachGyro();
-        
 	}
 
 	protected void Update() 
@@ -52,6 +49,8 @@ public class GyroController : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), lowPassFilterFactor);
+
+            
         }
         else if (Input.GetKey(KeyCode.LeftAlt))
         {

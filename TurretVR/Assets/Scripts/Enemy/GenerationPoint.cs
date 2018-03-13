@@ -9,10 +9,11 @@ public class GenerationPoint : MonoBehaviour {
     [SerializeField] private int enemyCount;
     private Transform player;
     private List<Enemy> spawnedEnemies;
+    private bool isInRadius = false;
+
     // Use this for initialization
     void Start () {
         player = GameManager.Instance.Player.transform;
-
         spawnedEnemies = new List<Enemy>();
 		for (int i = 0; i < enemyCount; i++)
         {
@@ -26,19 +27,34 @@ public class GenerationPoint : MonoBehaviour {
 
     private void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) <= aggroRadius)
+        if (Vector3.Distance(player.position, transform.position) <= aggroRadius && !isInRadius)
         {
-            spawnedEnemies.ForEach(x => x.GetComponent<ShipMovement>().Target = player.transform);
+            foreach (var ship in spawnedEnemies)
+            {
+                ship.GetComponent<ShipMovement>().Target = player.transform;
+                IndicatorManager.Instance.AddIndicator(ship.transform);
+            }
+            isInRadius = true;
         }
 
-        else if (Vector3.Distance(player.position, transform.position) > battleRadius)
+        else if (Vector3.Distance(player.position, transform.position) > battleRadius && isInRadius)
         {
-            spawnedEnemies.ForEach(x => x.GetComponent<ShipMovement>().Target = transform);
+            foreach (var ship in spawnedEnemies)
+            {
+                ship.GetComponent<ShipMovement>().Target = transform;
+                IndicatorManager.Instance.RemoveIndicator(ship.transform);
+            }
+            isInRadius = false;
         }
     }
 
     public void RemoveEnemy(Enemy enemy)
     {
         spawnedEnemies.Remove(enemy);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, aggroRadius);
     }
 }

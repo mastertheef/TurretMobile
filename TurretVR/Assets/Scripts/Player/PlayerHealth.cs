@@ -106,7 +106,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             if (!collision.gameObject.GetComponentInParent<Enemy>().IsExploded)
             {
-                StartCoroutine(Die());
+                TakeDamage(150);
                 if (collision.gameObject.tag != "Boss")
                 {
                     collision.gameObject.GetComponentInParent<Enemy>().Die();

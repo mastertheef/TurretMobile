@@ -21,7 +21,7 @@ public class ShipMovement : MonoBehaviour {
     private bool makingVirage = false;
 	// Use this for initialization
 	void Start () {
-        //target = GetComponent<GenerationPoint>().transform; //GameManager.Instance.Player.transform;
+        target = GetComponentInParent<Enemy>().SpawnPoint.transform; //GameManager.Instance.Player.transform;
 	}
 	
 	// Update is called once per frame

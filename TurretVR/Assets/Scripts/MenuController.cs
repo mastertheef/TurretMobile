@@ -8,9 +8,19 @@ public class MenuController : MonoBehaviour {
 
     [SerializeField] GameObject firstButton;
     [SerializeField] Text ScoreLabel;
+    [SerializeField] Text GyroLabel;
         // Use this for initialization
 	void Start () {
         EventSystem.current.SetSelectedGameObject(firstButton);
+        if (SystemInfo.supportsGyroscope)
+        {
+            GyroLabel.text = "Gyro is supported";
+        }
+        else
+        {
+            GyroLabel.text = "Gyro is not supported";
+            GyroLabel.color = Color.red;
+        }
         if (ScoreLabel != null)
         {
             ScoreLabel.text = string.Format("You: {0}", SceneController.Instance.FinalScore);

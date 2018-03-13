@@ -24,7 +24,7 @@ public class EnemyShip : Enemy {
 	// Use this for initialization
 	void Start () {
         player = GameManager.Instance.Player.transform;
-        IndicatorManager.Instance.AddIndicator(transform);
+        //IndicatorManager.Instance.AddIndicator(transform);
     }
 	
 	// Update is called once per frame
