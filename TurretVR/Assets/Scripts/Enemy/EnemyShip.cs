@@ -69,7 +69,6 @@ public class EnemyShip : Enemy {
     public override void Die()
     {
         Explode();
-        GameManager.Instance.ReduceShips();
         IndicatorManager.Instance.RemoveIndicator(transform);
     }
 

@@ -55,6 +55,6 @@ public class GenerationPoint : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, aggroRadius);
+       // Gizmos.DrawSphere(transform.position, aggroRadius);
     }
 }

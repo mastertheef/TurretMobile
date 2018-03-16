@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour {
     private Coroutine shieldRestoration;
     private bool isDead = false;
 
+    public float HitPoints { get { return hitPoints; } }
+
 	// Use this for initialization
 	void Start () {
         hitPointsSlider.maxValue = maxHitPoints;
@@ -33,7 +35,7 @@ public class PlayerHealth : MonoBehaviour {
         }
 	}
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (shield > 0)
         {

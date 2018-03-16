@@ -24,7 +24,7 @@ public class LaserBeamController : Singleton<LaserBeamController> {
     
 	// Use this for initialization
 	void Start () {
-        LaserCharges = MaxLaserCharges;
+        LaserCharges = MissionsManager.Instance.StartLaserCount;
         chargeImages = new List<Image>();
         for (int i = 0; i<LaserCharges; i++)
         {

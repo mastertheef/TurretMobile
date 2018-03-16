@@ -17,7 +17,7 @@ public class RocketController : Singleton<RocketController> {
 
 	// Use this for initialization
 	void Start () {
-        RocketCount = MaxRockets;
+        RocketCount = MissionsManager.Instance.StartRocketsCount;
         rocketImages = new List<Image>();
         for (int i = 0; i<RocketCount; i++)
         {

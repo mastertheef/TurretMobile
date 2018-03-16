@@ -76,11 +76,17 @@ public class Enemy : MonoBehaviour
             float choice = Random.Range(0f, 1f);
             if (choice < 0.5)
             {
-                LaserBeamController.Instance.AddCharge();
+                if (MissionsManager.Instance.CanUseLaser)
+                {
+                    LaserBeamController.Instance.AddCharge();
+                }
             }
             else
             {
-                RocketController.Instance.AddRocket();
+                if (MissionsManager.Instance.CanUseRockets)
+                {
+                    RocketController.Instance.AddRocket();
+                }
             }
         }
     }

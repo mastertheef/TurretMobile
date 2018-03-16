@@ -6,6 +6,7 @@ public class Asteroid : Enemy
 {
     [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private BaseEffect debuff;
+    [SerializeField] private float CollisionDamage;
 
     private Vector3 rotationDirection;
 
@@ -36,8 +37,7 @@ public class Asteroid : Enemy
         if (other.gameObject.tag == "Player")
         {
             this.Explode();
-            EffectSystem.Instance.AddEffect(debuff);
-            GameManager.Instance.CountDown -= reduceSeconds;
+            GameManager.Instance.Player.GetComponent<PlayerHealth>().TakeDamage(CollisionDamage);
         }
 
         if (other.gameObject.tag == "LaserBeam")
@@ -53,14 +53,6 @@ public class Asteroid : Enemy
             transform.localPosition = Vector3.MoveTowards(transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
             yield return null;
         }
-    }
-
-    protected override void Explode()
-    {
-        base.Explode();
-        GameManager.Instance.AsteroidsCount++;
-        GameManager.Instance.ReduceAsteroids();
-
     }
 
     private void OnParticleCollision(GameObject other)

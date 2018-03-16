@@ -529,12 +529,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  turnSpeed: 0.5
+  turnSpeed: 1
   raycastOffset: 15
-  detectoionDistance: 75
-  virageDistance: 350
-  virageOffsetMin: 200
-  virageOffsetMax: 300
+  detectoionDistance: 200
+  virageDistance: 500
+  virageOffsetMin: 500
+  virageOffsetMax: 700
 --- !u!114 &114772059813665146
 MonoBehaviour:
   m_ObjectHideFlags: 1

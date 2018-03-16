@@ -26,6 +26,10 @@ public class EffectSystem : Singleton<EffectSystem> {
 
     public void AddEffect(BaseEffect effect)
     {
+        if (effect == null)
+        {
+            return;
+        }
         string key = effect.tag;
 
         if (!effects.ContainsKey(key))

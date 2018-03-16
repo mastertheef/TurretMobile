@@ -84,60 +84,17 @@ public class GameManager : Singleton<GameManager>
 
     private bool mothershipSpawned;
 
-    private int enemyCount = 0;
-    Quaternion rotation;
-
     // Use this for initialization
     void Start()
     {
-        InvokeRepeating("GameCountDown", 0, 1);
+        //InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
         score = 0;
         activeAsteroids = 0;
         activeShips = 0;
         SpawnAsteroids();
-        StartCoroutine(Spawn());
         SoundManager.Instance.PlayBackground();
 
-    }
-
-    private void SpawnEnemy()
-    {
-        if (CountDown > 0 && (activeShips < maxActiveShips || activeAsteroids < maxActiveAsteroids))
-        {
-            Quaternion randAng = Quaternion.Euler(Random.Range(enemyMaxBottom, enemyMaxTop), Random.Range(enemyMaxLeft, enemyMaxRight), 0);
-            var newPosition = player.transform.position + randAng * player.transform.forward * Random.Range(300, spawnDistance);
-
-            int enemyIndex = 0;
-            if (activeShips >= maxActiveShips)
-            {
-                enemyIndex = Random.Range(0, 2);
-            }
-            else if (activeAsteroids >= maxActiveAsteroids)
-            {
-                enemyIndex = Random.Range(3, enemies.Count);
-            }
-            else
-            {
-                enemyIndex = Random.Range(0, enemies.Count);
-            }
-
-            Enemy enemy = Instantiate(enemies[enemyIndex], newPosition, enemies[enemyIndex].transform.rotation);
-
-            if (enemy.tag == "Asteroid")
-            {
-                activeAsteroids++;
-            }
-            else
-            {
-                activeShips++;
-            }
-
-            if (enemy.tag != "Asteroid")
-            {
-                IndicatorManager.Instance.AddIndicator(enemy.transform);
-            }
-        }
     }
 
     private void SpawnAsteroids()
@@ -150,53 +107,35 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private IEnumerator Spawn()
-    {
-        while (CountDown > 0)
-        {
-            if (gameTime >= bossSpawnSecond && !mothershipSpawned) 
-            {
-                var mothership = Instantiate(MotherShipPrefab);
-                mothershipSpawned = true;
-                SoundManager.Instance.PlayBoss();
-                IndicatorManager.Instance.AddIndicator(mothership.transform);
-                yield return new WaitForSeconds(spawnDelayAfterBoss);
-            }
-
-            // SpawnEnemy();
-            float spawnDelay = Random.Range(spawnDelayRange[0], spawnDelayRange[1]);
-            yield return new WaitForSeconds(spawnDelay);
-        }
-    }
-
-    private void GameCountDown()
-    {
-        gameTime++;
-        if (--CountDown == 0)
-        {
-            CancelInvoke("GameCountDown");
-            SoundManager.Instance.StopMusic();
-            SceneController.Instance.FinalScore = Score;
-            SceneController.Instance.FadeAndLoadScene("Score");
-        };
-        gameTimerLabel.text = NiceTime(CountDown);
-    }
-
-    public void ReduceAsteroids()
-    {
-        activeAsteroids = activeAsteroids > 0 ? activeAsteroids - 1 : 0;
-    }
-
-    public void ReduceShips()
-    {
-        activeShips = activeShips > 0 ? activeShips - 1 : 0;
-    }
-
+    //private void GameCountDown()
+    //{
+    //    gameTime++;
+    //    if (--CountDown == 0)
+    //    {
+    //        CancelInvoke("GameCountDown");
+    //        SoundManager.Instance.StopMusic();
+    //        SceneController.Instance.FinalScore = Score;
+    //        SceneController.Instance.FadeAndLoadScene("Score");
+    //    };
+    //    gameTimerLabel.text = NiceTime(CountDown);
+    //}
 
     public string NiceTime(float timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60F);
         int seconds = Mathf.FloorToInt(timer - minutes * 60);
         return string.Format("{0:0}:{1:00}", minutes, seconds);
+    }
+
+    public void MissionEnd(bool meetAllCondition)
+    {
+        if (meetAllCondition)
+        {
+            // Win
+        }
+        else
+        {
+            // lose
+        }
     }
 }
