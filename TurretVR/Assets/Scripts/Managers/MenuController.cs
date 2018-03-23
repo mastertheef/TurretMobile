@@ -37,6 +37,6 @@ public class MenuController : MonoBehaviour {
 
     public void Play()
     {
-        SceneController.Instance.FadeAndLoadScene("Space1");
+        SceneController.Instance.FadeAndLoadScene("LevelSelect");
     }
 }

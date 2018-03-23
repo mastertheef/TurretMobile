@@ -8,13 +8,17 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
     [SerializeField] private List<LevelInfo> levels;
-    public List<LevelInfo> Levels { get { return levels; } }
-    private readonly string levelInfoFile = Application.persistentDataPath + "/levelInfo.dat";
+    [SerializeField] private RectTransform LevelContainer;
+    [SerializeField] private LevelButton levelButtonPrefab;
+    
+    private string levelInfoFile;
 
     public static LevelManager Instance;
 
     private void Awake()
     {
+        levelInfoFile = Application.persistentDataPath + "/levelInfo.dat";
+
         if (Instance == null)
         {
             Instance = this;
@@ -55,9 +59,34 @@ public class LevelManager : MonoBehaviour {
         Save();
     }
 
+    public List<LevelInfo> GetLevels()
+    {
+        return levels;
+    }
+
+    public void UpdateLevels()
+    {
+        var buttons = LevelContainer.GetComponentsInChildren<LevelButton>();
+        foreach (var button in buttons)
+        {
+            Destroy(button.gameObject);
+        }
+
+        foreach (var level in levels)
+        {
+            var newButton = Instantiate(levelButtonPrefab, LevelContainer);
+            newButton.ConfigureButton(level);
+        }
+    }
+
     // Use this for initialization
     void Start () {
-		
+		if (File.Exists(levelInfoFile))
+        {
+            Load();
+        }
+
+        UpdateLevels();
 	}
 	
 	// Update is called once per frame
