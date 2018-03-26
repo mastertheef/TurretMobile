@@ -25,4 +25,9 @@ public class MissionsManager : Singleton<MissionsManager> {
 
         return currentState;
     }
+
+    public int GetRating()
+    {
+        return 3; // need to think about this logic
+    }
 }

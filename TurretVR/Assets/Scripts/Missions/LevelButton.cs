@@ -21,7 +21,7 @@ public class LevelButton : MonoBehaviour {
             ScoreLabel.text = "Score: " + info.Score.ToString();
             GetComponent<Image>().sprite = unlockedSprite;
             
-            for (int i = 0; i < info.rating; i++)
+            for (int i = 0; i < info.Rating; i++)
             {
                 Rewards[i].gameObject.SetActive(true);
             }

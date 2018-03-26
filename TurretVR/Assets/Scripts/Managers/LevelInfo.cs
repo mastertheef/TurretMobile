@@ -11,6 +11,6 @@ public class LevelInfo
     public string DisplayName;
     public bool Unlocked;
     public int Score;
-    public int rating;
+    public int Rating;
 }
 

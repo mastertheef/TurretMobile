@@ -8,19 +8,19 @@ public class LevelEnd : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            var levelSuccess = MissionsManager.Instance.CheckAllConditions();
+            //var levelSuccess = MissionsManager.Instance.CheckAllConditions();
 
-            if (levelSuccess)
-            {
-                Debug.Log("Level Success");
-                // save level progression somwewhere
-            }
-            else
-            {
-                Debug.Log("Level Fail");
-            }
-            SceneController.Instance.FinalScore = GameManager.Instance.Score;
-            SceneController.Instance.FadeAndLoadScene("Score");
+            //if (levelSuccess)
+            //{
+            //    Debug.Log("Level Success");
+            //    // save level progression somwewhere
+            //}
+            //else
+            //{
+            //    Debug.Log("Level Fail");
+            //}
+            //SceneController.Instance.FinalScore = GameManager.Instance.Score;
+            SceneController.Instance.FadeAndLoadScene("LevelEnd");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -28,6 +29,15 @@ public class LevelManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SaveCurrent(int score, int rating)
+    {
+        var currentScene = SceneManager.GetActiveScene().name;
+        var currentLevel = levels.First(x => x.SceneName == currentScene);
+        currentLevel.Score = score;
+        currentLevel.Rating = rating;
+        Save();
     }
 
     public void Save()
