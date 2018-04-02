@@ -148,7 +148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000040546142}
+  m_AnchoredPosition: {x: 0, y: -0.00000076790724}
   m_SizeDelta: {x: 994, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &138179288
@@ -622,17 +622,17 @@ MonoBehaviour:
     DisplayName: Level 1
     Unlocked: 1
     Score: 540
-    rating: 3
+    Rating: 0
   - SceneName: Space2
     DisplayName: Level 2
     Unlocked: 1
     Score: 320
-    rating: 2
+    Rating: 0
   - SceneName: Space3
     DisplayName: Level 3
     Unlocked: 0
     Score: 0
-    rating: 0
+    Rating: 0
   LevelContainer: {fileID: 138179287}
   levelButtonPrefab: {fileID: 114220094638463648, guid: a164c710956a80f4e9913163ef4f1fbb,
     type: 2}

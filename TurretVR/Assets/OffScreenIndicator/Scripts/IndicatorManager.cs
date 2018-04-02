@@ -6,8 +6,7 @@ using System;
 
 public class IndicatorManager : Singleton<IndicatorManager>
 {
-
-    private OffScreenIndicator indicator;
+    [SerializeField] private OffScreenIndicator indicator;
     [SerializeField] private Sprite onScreenIndicator;
     [SerializeField] private Sprite offScreenIndicator;
 
@@ -16,11 +15,7 @@ public class IndicatorManager : Singleton<IndicatorManager>
     // Use this for initialization
     void Awake()
     {
-        indicator = OffScreenIndicator.Instance;
-
         int countTargets = GameManager.Instance.MaxEnemies;
-        //indicator.Targets 
-        //indicator.Indicators = 
     }
 
     public void AddIndicator(Transform target)
@@ -37,15 +32,15 @@ public class IndicatorManager : Singleton<IndicatorManager>
         };
 
 
-        OffScreenIndicator.Instance.indicators.Add(ind);
+        indicator.indicators.Add(ind);
         var indicatorTarget = new FixedTarget
         {
             target = target,
-            indicatorID = OffScreenIndicator.Instance.indicators.Count
+            indicatorID = indicator.indicators.Count
         };
-        OffScreenIndicator.Instance.targets.Add(indicatorTarget);
+        indicator.targets.Add(indicatorTarget);
 
-        OffScreenIndicator.Instance.AddIndicator(target, 0);
+        indicator.AddIndicator(target, 0);
 
     }
 

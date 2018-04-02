@@ -8,19 +8,8 @@ public class MyIndicatorManager : OffScreenIndicatorManagerCanvas
 {
     private Sprite offScreenSprite;
 
-    private void Start()
-    {
-        //arrowIndicators = new List<ArrowIndicator>();
-        offScreenSprite = IndicatorManager.Instance.OffScreenIndicatorSprite;
-    }
-
     public override void AddIndicator(Transform target, int indicatorID)
     {
-        //if (indicatorID > indicators.Count)
-        //{
-        //    Debug.LogError("Indicator ID not valid. Check Off Screen Indicator Indicators list.");
-        //    return;
-        //}
         if (!ExistsIndicator(target))
         {
             ArrowIndicatorCanvas newArrowIndicator = new ArrowIndicatorCanvas();

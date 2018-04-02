@@ -9,6 +9,6 @@ public class SurviveMission : MissionBase
 
     public override bool Condition()
     {
-        return GameManager.Instance.Player.GetComponent<PlayerHealth>().HitPoints > 0;
+        return GameManager.Instance.playerIsDead == false;
     }
 }

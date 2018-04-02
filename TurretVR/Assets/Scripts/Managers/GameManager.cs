@@ -82,6 +82,8 @@ public class GameManager : Singleton<GameManager>
     public float EnemyMaxTop { get { return enemyMaxTop; } }
     public float EnemyMaxBottom { get { return enemyMaxBottom; } }
 
+    public bool playerIsDead { get; set; }
+
     private bool mothershipSpawned;
 
     // Use this for initialization

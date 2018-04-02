@@ -48,18 +48,25 @@ public class PlayerHealth : MonoBehaviour {
                 damage = damage - shield;
                 shield = 0;
                 hitPoints -= damage;
+                DieIfNoHP();
             }
         }
         else
         {
             hitPoints -= damage;
-            if (hitPoints <= 0)
-            {
-                hitPoints = 0;
-                Die();
-            }
+            DieIfNoHP();
         }
     }
+
+    private void DieIfNoHP()
+    {
+        if (hitPoints <= 0)
+        {
+            hitPoints = 0;
+            StartCoroutine(Die()); ;
+        }
+    }
+
 
     private IEnumerator RestoreShield()
     {
@@ -81,11 +88,11 @@ public class PlayerHealth : MonoBehaviour {
         shield = 0;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GameManager.Instance.UI.enabled = false;
+        GameManager.Instance.playerIsDead = true;
         // Explode
 
         yield return new WaitForSeconds(3);
-        SceneController.Instance.FinalScore = GameManager.Instance.Score;
-        SceneController.Instance.FadeAndLoadScene("Score");
+        SceneController.Instance.FadeAndLoadScene("LevelEnd");
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private List<LevelInfo> levels;
     [SerializeField] private RectTransform LevelContainer;
     [SerializeField] private LevelButton levelButtonPrefab;
+
+    public string CurrentLevel { get; set; }
     
     private string levelInfoFile;
 
@@ -33,8 +35,7 @@ public class LevelManager : MonoBehaviour {
 
     public void SaveCurrent(int score, int rating)
     {
-        var currentScene = SceneManager.GetActiveScene().name;
-        var currentLevel = levels.First(x => x.SceneName == currentScene);
+        var currentLevel = levels.First(x => x.SceneName == Instance.CurrentLevel);
         currentLevel.Score = score;
         currentLevel.Rating = rating;
         Save();
@@ -91,16 +92,24 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		if (File.Exists(levelInfoFile))
+        if (File.Exists(levelInfoFile))
         {
             Load();
         }
 
         UpdateLevels();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "LevelSelect")
+        {
+            Start();
+        }
+    }
 }

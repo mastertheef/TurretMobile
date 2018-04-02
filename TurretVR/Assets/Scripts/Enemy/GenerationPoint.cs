@@ -52,9 +52,4 @@ public class GenerationPoint : MonoBehaviour {
     {
         spawnedEnemies.Remove(enemy);
     }
-
-    private void OnDrawGizmos()
-    {
-       // Gizmos.DrawSphere(transform.position, aggroRadius);
-    }
 }

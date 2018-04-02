@@ -9,7 +9,7 @@ using System.Collections;
 /// </summary>
 namespace Greyman
 {
-    public class OffScreenIndicator : Singleton<OffScreenIndicator>
+    public class OffScreenIndicator : MonoBehaviour
     {
 
         public bool enableDebug = true;
