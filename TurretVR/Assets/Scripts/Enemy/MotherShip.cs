@@ -208,7 +208,7 @@ public class MotherShip : MonoBehaviour {
             }
 
             ship.GetComponent<MeshRenderer>().enabled = false;
-            GameManager.Instance.Score += ScorePoints;
+            DTO.CurrentScore += ScorePoints;
             GameManager.Instance.CountDown += addSeconds;
             SoundManager.Instance.PlayBackground();
             yield return new WaitForSeconds(5);

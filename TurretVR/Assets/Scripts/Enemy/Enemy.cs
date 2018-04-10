@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.ShipsCount++;
             GameManager.Instance.CountDown += addSeconds;
-            GameManager.Instance.Score += score;
+            DTO.CurrentScore += score;
             IndicatorManager.Instance.RemoveIndicator(gameObject.transform);
 
             GiveResource();

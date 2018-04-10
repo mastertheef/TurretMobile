@@ -11,7 +11,7 @@ public class LevelEndManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ScoreLabel.text = string.Format("Score: {0}", GameManager.Instance.Score.ToString());
+        ScoreLabel.text = string.Format("Score: {0}", DTO.CurrentScore.ToString());
 
 		if (MissionsManager.Instance.CheckAllConditions())
         {
@@ -23,13 +23,13 @@ public class LevelEndManager : MonoBehaviour {
             }
 
             LevelManager.Instance.UnlockNext();
-            LevelManager.Instance.SaveCurrent(GameManager.Instance.Score, rating);
+            LevelManager.Instance.SaveCurrent(DTO.CurrentScore, rating);
         }
         else
         {
             StatusLabel.text = "Mission Failed";
             StatusLabel.color = Color.red;
-            LevelManager.Instance.SaveCurrent(GameManager.Instance.Score, 0);
+            LevelManager.Instance.SaveCurrent(DTO.CurrentScore, 0);
         }
     }
 	

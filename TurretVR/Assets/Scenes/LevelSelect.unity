@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00000076790724}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 994, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &138179288
@@ -633,9 +633,6 @@ MonoBehaviour:
     Unlocked: 0
     Score: 0
     Rating: 0
-  LevelContainer: {fileID: 138179287}
-  levelButtonPrefab: {fileID: 114220094638463648, guid: a164c710956a80f4e9913163ef4f1fbb,
-    type: 2}
 --- !u!4 &1118649381
 Transform:
   m_ObjectHideFlags: 0
@@ -727,6 +724,7 @@ GameObject:
   - component: {fileID: 1377390799}
   - component: {fileID: 1377390801}
   - component: {fileID: 1377390800}
+  - component: {fileID: 1377390802}
   m_Layer: 0
   m_Name: LevelSelectWindow
   m_TagString: Untagged
@@ -751,7 +749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.1, y: -2.5}
+  m_AnchoredPosition: {x: 9.67, y: -1.46}
   m_SizeDelta: {x: 1173, y: 677.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1377390800
@@ -787,6 +785,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1377390798}
+--- !u!114 &1377390802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1377390798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcfc905e8d5a9347bad16b8be8ce95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelContainer: {fileID: 138179287}
+  levelButtonPrefab: {fileID: 114220094638463648, guid: a164c710956a80f4e9913163ef4f1fbb,
+    type: 2}
 --- !u!1001 &1583876617
 Prefab:
   m_ObjectHideFlags: 0
@@ -847,12 +859,12 @@ Prefab:
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
@@ -862,7 +874,7 @@ Prefab:
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
@@ -872,7 +884,7 @@ Prefab:
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224606311245866000, guid: a164c710956a80f4e9913163ef4f1fbb,
         type: 2}

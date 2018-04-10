@@ -34,7 +34,6 @@ public class GameManager : Singleton<GameManager>
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
-    private int score = 0;
     private int asteroidsMissed = 0;
     private int shipsMissed = 0;
     private int gameTime;
@@ -64,11 +63,11 @@ public class GameManager : Singleton<GameManager>
 
     public int Score
     {
-        get { return score; }
+        get { return DTO.CurrentScore; }
         set
         {
-            score = value;
-            scoreLabel.text = string.Format("Score: {0}", score);
+            DTO.CurrentScore = value;
+            scoreLabel.text = string.Format("Score: {0}", DTO.CurrentScore);
         }
     }
 
@@ -91,7 +90,6 @@ public class GameManager : Singleton<GameManager>
     {
         //InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
-        score = 0;
         activeAsteroids = 0;
         activeShips = 0;
         SpawnAsteroids();

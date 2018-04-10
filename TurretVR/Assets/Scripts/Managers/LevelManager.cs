@@ -9,11 +9,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
     [SerializeField] private List<LevelInfo> levels;
-    [SerializeField] private RectTransform LevelContainer;
-    [SerializeField] private LevelButton levelButtonPrefab;
 
-    public string CurrentLevel { get; set; }
-    
     private string levelInfoFile;
 
     public static LevelManager Instance;
@@ -35,7 +31,7 @@ public class LevelManager : MonoBehaviour {
 
     public void SaveCurrent(int score, int rating)
     {
-        var currentLevel = levels.First(x => x.SceneName == Instance.CurrentLevel);
+        var currentLevel = levels.First(x => x.SceneName == DTO.CurrentScene);
         currentLevel.Score = score;
         currentLevel.Rating = rating;
         Save();
@@ -75,41 +71,11 @@ public class LevelManager : MonoBehaviour {
         return levels;
     }
 
-    public void UpdateLevels()
-    {
-        var buttons = LevelContainer.GetComponentsInChildren<LevelButton>();
-        foreach (var button in buttons)
-        {
-            Destroy(button.gameObject);
-        }
-
-        foreach (var level in levels)
-        {
-            var newButton = Instantiate(levelButtonPrefab, LevelContainer);
-            newButton.ConfigureButton(level);
-        }
-    }
-
     // Use this for initialization
     void Start () {
         if (File.Exists(levelInfoFile))
         {
             Load();
-        }
-
-        UpdateLevels();
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "LevelSelect")
-        {
-            Start();
         }
     }
 }

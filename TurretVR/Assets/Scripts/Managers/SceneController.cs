@@ -32,7 +32,6 @@ public class SceneController : Singleton<SceneController> {
     }
     private IEnumerator FadeAndSwitchScenes(string sceneName)
     {
-        
         yield return StartCoroutine(Fade(1f));
         if (BeforeSceneUnload != null)
             BeforeSceneUnload();
@@ -42,7 +41,6 @@ public class SceneController : Singleton<SceneController> {
             AfterSceneLoad();
 
         yield return StartCoroutine(Fade(0f));
-        
     }
     private IEnumerator LoadSceneAndSetActive(string sceneName)
     {

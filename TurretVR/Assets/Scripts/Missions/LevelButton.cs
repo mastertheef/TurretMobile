@@ -36,7 +36,7 @@ public class LevelButton : MonoBehaviour {
 
     public void LoadLevel()
     {
-        LevelManager.Instance.CurrentLevel = SceneName;
         SceneController.Instance.FadeAndLoadScene(SceneName);
+        DTO.CurrentScene = SceneName;
     }
 }
