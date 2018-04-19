@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float resorceProbability = 0.1f;
 
     public GenerationPoint SpawnPoint { get; set; }
-    
 
     protected bool isExploded = false;
 

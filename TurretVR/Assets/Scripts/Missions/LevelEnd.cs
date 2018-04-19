@@ -6,8 +6,10 @@ public class LevelEnd : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "MotherShip")
         {
+            DTO.MissionSuccess = MissionsManager.Instance.CheckAllConditions();
+            DTO.CurrentRating = MissionsManager.Instance.GetRating();
             SceneController.Instance.FadeAndLoadScene("LevelEnd");
         }
     }

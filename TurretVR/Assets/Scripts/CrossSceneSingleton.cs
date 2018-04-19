@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public class CrossSceneSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance = null;
 
@@ -13,13 +13,13 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (instance == null)
             {
                 instance = FindObjectOfType<T>();
-                //DontDestroyOnLoad(instance);
             }
             else if (instance != FindObjectOfType<T>())
             {
                 Destroy(instance);
             }
 
+            DontDestroyOnLoad(FindObjectOfType<T>());
             return instance;
         }
     }

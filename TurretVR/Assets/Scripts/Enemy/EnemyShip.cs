@@ -18,12 +18,14 @@ public class EnemyShip : Enemy {
     private bool canShoot = false;
     private int shootCount = 0;
     private Transform player;
+    private Transform motherShip;
     
     private Vector3 targetPoint;
      
 	// Use this for initialization
 	void Start () {
         player = GameManager.Instance.Player.transform;
+        motherShip = GameManager.Instance.MotherShip.transform;
         //IndicatorManager.Instance.AddIndicator(transform);
     }
 	
@@ -55,7 +57,7 @@ public class EnemyShip : Enemy {
     {
         if (shootTimer > shootDelay && isInFront() && Vector3.Distance(transform.position, player.position) <= shootDistance)
         {
-            var target = player.position;
+            var target = GetNearestTarget();
             Projectile l = Instantiate(laser, cannons[Random.Range(0, cannons.Length - 1)].transform.position, transform.rotation);
             l.ReduceSeconds = reduceSeconds;
             var targetRange = new Vector3(target.x + Random.Range(shootScatter * -1, shootScatter), target.y + Random.Range(shootScatter * -1, shootScatter), target.z);
@@ -85,22 +87,16 @@ public class EnemyShip : Enemy {
         return Vector3.Dot(Vector3.forward, transform.InverseTransformPoint(player.position)) > 0;
     }
 
-    private IEnumerator Fly()
+    private Vector3 GetNearestTarget()
     {
-        while (!isExploded)
+        var playerDistance = Vector3.Distance(transform.position, player.position);
+        var motherShipDistance = Vector3.Distance(transform.position, motherShip.position);
+
+        if (motherShipDistance<= playerDistance)
         {
-            transform.position += targetPoint.normalized * moveSpeed * Time.deltaTime;
-            yield return null;
+            return player.position;
         }
-    }
 
-    private bool fliedAway()
-    {
-        return Vector3.Distance(Vector3.zero, transform.position) >= flyAwayDistance;
-    }
-
-    private bool isBehind()
-    {
-        return (Vector3.zero - transform.position).z > 0;
+        return motherShip.position;
     }
 }

@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Game")]
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject motherShip;
     [SerializeField] private Camera gameCamera;
     [SerializeField] private float gameDuration = 90f;
     [SerializeField] private Text scoreLabel;
@@ -43,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     private int activeShips;
 
     public GameObject Player { get { return player; } }
+    public GameObject MotherShip { get { return motherShip; } }
 
     public Camera GameCamera { get { return gameCamera; } }
     public Canvas UI { get { return ui; } }

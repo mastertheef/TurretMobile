@@ -13,11 +13,11 @@ public class LevelEndManager : MonoBehaviour {
 	void Start () {
         ScoreLabel.text = string.Format("Score: {0}", DTO.CurrentScore.ToString());
 
-		if (MissionsManager.Instance.CheckAllConditions())
+		if (DTO.MissionSuccess)
         {
             StatusLabel.text = "Mission Complete";
-            int rating = MissionsManager.Instance.GetRating();
-            for (int i = 0; i< rating; i++)
+            int rating = DTO.CurrentRating;
+            for (int i = 0; i < rating; i++)
             {
                 rewards[i].gameObject.SetActive(true);
             }
@@ -35,6 +35,8 @@ public class LevelEndManager : MonoBehaviour {
 	
 	public void LoadLevelSelect()
     {
+        DTO.CurrentRating = 0;
+        DTO.CurrentScore = 0;
         SceneController.Instance.FadeAndLoadScene("LevelSelect");
     }
 }

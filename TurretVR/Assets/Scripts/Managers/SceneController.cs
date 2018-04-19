@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneController : Singleton<SceneController> {
+public class SceneController : CrossSceneSingleton<SceneController> {
 
     public event Action BeforeSceneUnload;
     public event Action AfterSceneLoad;
