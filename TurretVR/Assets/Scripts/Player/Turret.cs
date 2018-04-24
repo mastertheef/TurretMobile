@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Forge3D;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -145,21 +146,29 @@ public class Turret : Singleton<Turret>
 
     public void StartFiring(float delay = 0)
     {
-        isFiring = true;
-        if (!IsInvoking("FireLeft"))
-            InvokeRepeating("FireLeft", delay, ShootCounter);
-        if (!IsInvoking("FireRight"))
-            InvokeRepeating("FireRight", delay + ShootCounter / 2, ShootCounter);
 
+        //if (!IsInvoking("FireLeft"))
+        //    InvokeRepeating("FireLeft", delay, ShootCounter);
+        //if (!IsInvoking("FireRight"))
+        //    InvokeRepeating("FireRight", delay + ShootCounter / 2, ShootCounter);
+
+        if (!isFiring)
+        {
+            F3DFXController.instance.Fire();
+            isFiring = true;
+        }
     }
 
     public void StopFiring()
     {
-        isFiring = false;
-        CancelInvoke("FireLeft");
-        CancelInvoke("FireRight");
+        
+        //CancelInvoke("FireLeft");
+        //CancelInvoke("FireRight");
 
-        StartCoroutine(ShootingDelay());
+        //StartCoroutine(ShootingDelay());
+
+        F3DFXController.instance.Stop();
+        isFiring = false;
     }
 
     private IEnumerator ShootingDelay()
