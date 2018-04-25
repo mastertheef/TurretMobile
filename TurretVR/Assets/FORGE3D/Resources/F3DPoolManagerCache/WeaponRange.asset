@@ -53,6 +53,6 @@ MonoBehaviour:
     targetFPS: 50
     pooling: 1
     needSort: 0
-    needParenting: 1
+    needParenting: 0
     needDebug: 0
   namer: WeaponRange

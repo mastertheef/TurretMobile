@@ -25,7 +25,7 @@ public class Turret : Singleton<Turret>
     private GameObject fireStartRight;
 
     private bool canFire = true;
-    private bool isFiring = false;
+    private bool isFiring;
     private bool isDamaged = false;
     private bool laserBeamStarted = false;
 
@@ -67,11 +67,13 @@ public class Turret : Singleton<Turret>
 
     public float ProjectileAdditionalScale { get; set; }
 
+    private F3DFXController fxController;
     // Use this for initialization
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        fxController = GetComponent<F3DFXController>();
     }
 
     // Update is called once per frame
@@ -87,12 +89,16 @@ public class Turret : Singleton<Turret>
             if (Input.GetMouseButton(0) && CanFire && !isFiring)
             {
                 // StartCoroutine(PlayStartShootAndWait());
-                StartFiring();
+                //StartFiring();
+                isFiring = true;
+                fxController.Fire();
             }
 
             if (!Input.GetMouseButton(0))
             {
-                StopFiring();
+                //StopFiring();
+                isFiring = false;
+                fxController.Stop();
             }
         }
         else
@@ -100,11 +106,14 @@ public class Turret : Singleton<Turret>
             if (CrossPlatformInputManager.GetButton("Fire") && CanFire && !isFiring)
             {
                 // StartCoroutine(PlayStartShootAndWait());
+                isFiring = true;
                 StartFiring();
+
             }
 
-            if (!CrossPlatformInputManager.GetButton("Fire"))
+            if (isFiring && !CrossPlatformInputManager.GetButton("Fire"))
             {
+                isFiring = false;
                 StopFiring();
             }
         }
@@ -155,7 +164,6 @@ public class Turret : Singleton<Turret>
         if (!isFiring)
         {
             F3DFXController.instance.Fire();
-            isFiring = true;
         }
     }
 
@@ -168,7 +176,6 @@ public class Turret : Singleton<Turret>
         //StartCoroutine(ShootingDelay());
 
         F3DFXController.instance.Stop();
-        isFiring = false;
     }
 
     private IEnumerator ShootingDelay()

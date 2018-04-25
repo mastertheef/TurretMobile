@@ -413,6 +413,7 @@ namespace Forge3D
                 F3DPoolManager.Pools["GeneratedPool"].Spawn(seekerProjectile, TurretSocket[curSocket].position,
                     offset*TurretSocket[curSocket].rotation, null).gameObject as GameObject;
             F3DProjectile proj = newGO.GetComponent<F3DProjectile>();
+
             if (proj)
             {
                 proj.SetOffset(seekerOffset);

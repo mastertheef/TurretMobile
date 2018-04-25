@@ -41,6 +41,7 @@ namespace Forge3D
         // OnDespawned called by pool manager 
         public void OnDespawned()
         {
+            Destroy(gameObject);
         }
 
         // Stop attached particle systems emission and allow them to fade out before despawning
@@ -127,7 +128,7 @@ namespace Forge3D
             else
             {
                 // Projectile step per frame based on velocity and time
-                Vector3 step = transform.forward*Time.deltaTime*velocity;
+                Vector3 step = transform.forward * Time.deltaTime * velocity;
 
                 // Raycast for targets with ray length based on frame step by ray cast advance multiplier
                 if (Physics.Raycast(transform.position, transform.forward, out hitPoint, step.magnitude*RaycastAdvance,

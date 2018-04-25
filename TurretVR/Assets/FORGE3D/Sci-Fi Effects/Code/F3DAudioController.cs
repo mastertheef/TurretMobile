@@ -269,7 +269,8 @@ namespace Forge3D
             {
                 AudioSource aSrc =
                     F3DPoolManager.Pools["GeneratedPool"].SpawnAudio(audioSource, seekerShot, pos, null)
-                        .gameObject.GetComponent<AudioSource>();
+                        .gameObject
+                        .GetComponent<AudioSource>();
 
                 if (aSrc != null)
                 {

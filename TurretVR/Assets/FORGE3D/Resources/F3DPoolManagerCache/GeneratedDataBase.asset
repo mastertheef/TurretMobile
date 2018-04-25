@@ -19,17 +19,17 @@ MonoBehaviour:
     - {fileID: 400010, guid: 762a17aff08aa1f40ac72b27c15fe2d1, type: 2}
     - {fileID: 400004, guid: 43a8e47b31adb9a47b81c4653b412e5c, type: 2}
     - {fileID: 400000, guid: 9eeb3f92e3355994db8dc67cb3ea8ba0, type: 2}
-    poolLength: 32000000320000003200000000000000
-    poolLengthMax: 32000000320000003200000000000000
-    broadcastSpawnName: 
-    broadcastDespawnName: 
+    poolLength: 320000003200000032000000f4010000
+    poolLengthMax: 320000003200000032000000f4010000
+    broadcastSpawnName: OnSpawned
+    broadcastDespawnName: OnDespawned
     delayedSpawnInInstall: 1
     objectsPerUpdate: 5
     needBroadcasting: 1
     optimizeSpawn: 1
     targetFPS: 50
     pooling: 1
-    needSort: 1
+    needSort: 0
     needParenting: 1
     needDebug: 0
   namer: GeneratedDataBase
