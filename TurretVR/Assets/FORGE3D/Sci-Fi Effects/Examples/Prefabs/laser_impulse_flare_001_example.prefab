@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5693e1507ea5235488f93c109111dbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticleScale: 1.2
+  ParticleScale: 2
   ScaleGameobject: 1
 --- !u!198 &19800000
 ParticleSystem:

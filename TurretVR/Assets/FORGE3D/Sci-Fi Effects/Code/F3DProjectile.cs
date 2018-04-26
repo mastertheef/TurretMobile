@@ -21,6 +21,9 @@ namespace Forge3D
         float timer = 0f; // Projectile timer
         float fxOffset; // Offset of fxImpact
 
+        [SerializeField] private float damage = 3f;
+        
+
         void Awake()
         {
             // Cache transform and get all particle systems attached
@@ -75,8 +78,17 @@ namespace Forge3D
         // Apply hit force on impact
         void ApplyForce(float force)
         {
-            if (hitPoint.rigidbody != null)
-                hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
+            //if (hitPoint.rigidbody != null)
+            //    hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
+
+            if (hitPoint.transform.gameObject != null)
+            {
+                var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
+            }
         }
 
         void Update()

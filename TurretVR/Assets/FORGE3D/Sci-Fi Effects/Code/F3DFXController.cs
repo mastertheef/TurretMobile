@@ -29,8 +29,8 @@ namespace Forge3D
         // GUI captions
         string[] fxTypeName =
         {
-            "Vulcan", "Sologun", "Sniper", "Shotgun", "Seeker", "Railgun", "Plasmagun", "Plasma beam",
-            "Heavy plasma beam", "Lightning gun", "Flamethrower", "Pulse laser"
+            "Vulcan", "Sologun", "Seeker", "Railgun", "Plasmagun", "Plasma beam",
+            "Heavy plasma beam", "Lightning gun",  "Pulse laser"
         };
 
         // Current firing socket

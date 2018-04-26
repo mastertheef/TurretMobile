@@ -33,6 +33,8 @@ namespace Forge3D
         float initialBeamOffset; // Initial UV offset 
         public float fxOffset; // Fx offset from bullet's touch point      
 
+        [SerializeField] private float damage = 0.1f;
+
         void Awake()
         {
             // Get line renderer component
@@ -210,8 +212,17 @@ namespace Forge3D
         // Apply force to last hit object
         void ApplyForce(float force)
         {
-            if (hitPoint.rigidbody != null)
-                hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
+            //if (hitPoint.rigidbody != null)
+            //    hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
+
+            if (hitPoint.transform.gameObject != null)
+            {
+                var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
+            }
         }  
 
         // Set offset of impact

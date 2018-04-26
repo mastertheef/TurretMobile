@@ -94,7 +94,7 @@ public class Turret : Singleton<Turret>
                 fxController.Fire();
             }
 
-            if (!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0) && isFiring)
             {
                 //StopFiring();
                 isFiring = false;

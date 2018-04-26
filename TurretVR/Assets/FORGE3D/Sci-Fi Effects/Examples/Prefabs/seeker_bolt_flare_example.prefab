@@ -84,6 +84,7 @@ MonoBehaviour:
   DelayDespawn: 1
   delayedParticles:
   - {fileID: 19800004}
+  damage: 3
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
