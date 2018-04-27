@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Forge3D;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private Explosion explosion;
+    [SerializeField] private Transform newExplosion;
     [SerializeField] protected float hitPoints = 12;
     [SerializeField] protected float moveSpeed = 0.05f;
     [SerializeField] protected int score = 5;
@@ -28,8 +30,10 @@ public class Enemy : MonoBehaviour
     {
         if (!isExploded)
         {
-            var exp = Instantiate(explosion, gameObject.transform);
-            exp.transform.position = gameObject.transform.position;
+            //var exp = Instantiate(explosion, gameObject.transform);
+            //exp.transform.position = gameObject.transform.position;
+
+            F3DPoolManager.Pools["GeneratedPool"].Spawn(newExplosion, gameObject.transform.position, Quaternion.identity, null);
             isExploded = true;
             MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
             Collider collider = GetComponent<Collider>();

@@ -1322,6 +1322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114292143389242480, guid: a6596973493ce074b9048e997bc1f3bf,
     type: 2}
+  newExplosion: {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
   hitPoints: 20
   moveSpeed: 0.05
   score: 10

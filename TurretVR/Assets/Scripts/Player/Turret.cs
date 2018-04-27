@@ -107,14 +107,16 @@ public class Turret : Singleton<Turret>
             {
                 // StartCoroutine(PlayStartShootAndWait());
                 isFiring = true;
-                StartFiring();
+                //StartFiring();
+                fxController.Fire();
 
             }
 
             if (isFiring && !CrossPlatformInputManager.GetButton("Fire"))
             {
                 isFiring = false;
-                StopFiring();
+                //StopFiring();
+                fxController.Stop();
             }
         }
     }

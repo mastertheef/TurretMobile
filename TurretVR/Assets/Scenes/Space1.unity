@@ -1028,6 +1028,49 @@ Transform:
   m_PrefabParentObject: {fileID: 4994785260048566, guid: 797b2f9c77876b042aebb9d88081f55c,
     type: 2}
   m_PrefabInternal: {fileID: 263289150}
+--- !u!1 &264201932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 264201934}
+  - component: {fileID: 264201933}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &264201933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264201932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e51d46aadf24b4b813981141443db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  databaseName: DefaultDatabase
+  selectedItem: 0
+  haveToShowArr: 0000000000000000000000000000000000
+--- !u!4 &264201934
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264201932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278901380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,33 +1718,34 @@ MonoBehaviour:
   - {fileID: 263289151}
   ShellParticles: []
   DefaultFXType: 0
-  vulcanProjectile: {fileID: 400000, guid: e496166a742ada640b89650ebebbd052, type: 2}
-  vulcanMuzzle: {fileID: 400002, guid: ca6dec307275d294ba519247d04b6733, type: 2}
-  vulcanImpact: {fileID: 400000, guid: bfa7781c328a236468eda51a8ae2be55, type: 2}
+  DefaultLaserFXType: 0
+  vulcanProjectile: {fileID: 400000, guid: dad65925df464a64985ee2ef54c46de9, type: 2}
+  vulcanMuzzle: {fileID: 400002, guid: 0e4058e433eefd84daceef628b41d17b, type: 2}
+  vulcanImpact: {fileID: 400000, guid: 78137ee2097a6f2468a9b6b1f07cd713, type: 2}
   vulcanOffset: 0
-  soloGunProjectile: {fileID: 400012, guid: 440fe57f42038354092415c07a4d55a9, type: 2}
-  soloGunMuzzle: {fileID: 400000, guid: b16d97c287e513344af2399ff138cd27, type: 2}
-  soloGunImpact: {fileID: 400004, guid: fd953838f1872d042a334b466e298967, type: 2}
+  soloGunProjectile: {fileID: 400012, guid: 157253c33b5e2ae4c99dd92c193b5413, type: 2}
+  soloGunMuzzle: {fileID: 400000, guid: 170838e8060e02542afa9f81e59fed08, type: 2}
+  soloGunImpact: {fileID: 400004, guid: edca52d218c2de14397761ae1133b0b4, type: 2}
   soloGunOffset: 0
-  sniperBeam: {fileID: 400000, guid: 12e7c1b739173c946b6fa3d40e9f62d1, type: 2}
-  sniperMuzzle: {fileID: 400004, guid: 43a8e47b31adb9a47b81c4653b412e5c, type: 2}
-  sniperImpact: {fileID: 400004, guid: a980d2b7788c0ef489f3c79f44da79e1, type: 2}
+  sniperBeam: {fileID: 0}
+  sniperMuzzle: {fileID: 0}
+  sniperImpact: {fileID: 0}
   sniperOffset: 0
-  shotGunProjectile: {fileID: 400002, guid: 0072b525437a5ed4891ebd255ec94fe6, type: 2}
-  shotGunMuzzle: {fileID: 400002, guid: ca6dec307275d294ba519247d04b6733, type: 2}
-  shotGunImpact: {fileID: 400002, guid: 0072b525437a5ed4891ebd255ec94fe6, type: 2}
+  shotGunProjectile: {fileID: 0}
+  shotGunMuzzle: {fileID: 0}
+  shotGunImpact: {fileID: 0}
   shotGunOffset: 0
-  seekerProjectile: {fileID: 400000, guid: 49ca46ce7082ccf4c91329cd9b7c4b61, type: 2}
-  seekerMuzzle: {fileID: 400004, guid: 43a8e47b31adb9a47b81c4653b412e5c, type: 2}
-  seekerImpact: {fileID: 400010, guid: 762a17aff08aa1f40ac72b27c15fe2d1, type: 2}
+  seekerProjectile: {fileID: 400000, guid: 8319acb870e2b61459efb2ff33d19e45, type: 2}
+  seekerMuzzle: {fileID: 400004, guid: 201390457f7593b4f9c33fbb0da30117, type: 2}
+  seekerImpact: {fileID: 400010, guid: 7eb2b3ca853ef0844af0e1fb9c4c4e9b, type: 2}
   seekerOffset: 0
-  railgunBeam: {fileID: 400000, guid: ec0fb8bef2fb8a5459c55c3700521b70, type: 2}
-  railgunMuzzle: {fileID: 400000, guid: b16d97c287e513344af2399ff138cd27, type: 2}
-  railgunImpact: {fileID: 400010, guid: 2e92e894e0311c14c87f9544b2c88693, type: 2}
+  railgunBeam: {fileID: 0}
+  railgunMuzzle: {fileID: 0}
+  railgunImpact: {fileID: 0}
   railgunOffset: 0
-  plasmagunProjectile: {fileID: 400000, guid: e7b84dec6cdbfb646a33fd06b85cf64e, type: 2}
-  plasmagunMuzzle: {fileID: 400002, guid: e4aff98840a58c94ea1cec28789d55d6, type: 2}
-  plasmagunImpact: {fileID: 400004, guid: ec543be1efaafca46aeac6f66e7a5ff0, type: 2}
+  plasmagunProjectile: {fileID: 400000, guid: 1cbda689bb465ea49b41a3db35577a6d, type: 2}
+  plasmagunMuzzle: {fileID: 400002, guid: 0193a223b1a2f4a4fb1e7fecea3ac974, type: 2}
+  plasmagunImpact: {fileID: 400004, guid: 5c29cdc4a3e0fd147ade7cd90140990b, type: 2}
   plasmaGunOffset: 0
   plasmaBeam: {fileID: 400000, guid: 66b50793fa1c780409218a1a1db5b1d8, type: 2}
   plasmaOffset: 0
@@ -1716,6 +1760,17 @@ MonoBehaviour:
   laserImpulseMuzzle: {fileID: 400004, guid: 45116fb1512dc704b99d70267628129a, type: 2}
   laserImpulseImpact: {fileID: 400010, guid: ce59e020d922ccb43866dee1ba26a673, type: 2}
   laserImpulseOffset: 0
+--- !u!114 &501424719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 501424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5309af59ecdc1064aa93cd2541329379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &520294328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,53 +2015,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4947960475670314, guid: f5218fa61416c0046aa29be17a6e0791,
     type: 2}
   m_PrefabInternal: {fileID: 837727410}
---- !u!1001 &694267404
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4391667244732084, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 114094424780374950, guid: 298f83e9cf1a05e4fb5021e4debfdfb2,
-        type: 2}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 400000, guid: 9eeb3f92e3355994db8dc67cb3ea8ba0, type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 298f83e9cf1a05e4fb5021e4debfdfb2, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &708900752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,7 +2393,7 @@ MonoBehaviour:
   enemyMaxBottom: 0
   bossSpawnSecond: 50
   spawnDelayAfterBoss: 50
-  maxActiveAsteroids: 200
+  maxActiveAsteroids: 0
   maxActiveShips: 4
   player: {fileID: 501424713}
   motherShip: {fileID: 410567329}
@@ -2407,48 +2415,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1026773151
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035573400564466, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9b05e9a40049f3548948b9b4e24f79d8, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1028227748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3601,7 @@ GameObject:
   - component: {fileID: 1629347307}
   - component: {fileID: 1629347306}
   - component: {fileID: 1629347308}
+  - component: {fileID: 1629347309}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -3748,6 +3715,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1629347309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629347305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb1b38f7c8f8e44385c9f01d055bfd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 400000, guid: 9eeb3f92e3355994db8dc67cb3ea8ba0, type: 2}
+  vulcanHit:
+  - {fileID: 8300000, guid: b12187930d6f4b04b8a14c4e942c7f93, type: 3}
+  - {fileID: 8300000, guid: ee945bf47a1d77342b0e71d7e4421695, type: 3}
+  - {fileID: 8300000, guid: 4baa43d1a2555714a9dcc3b0b06a220c, type: 3}
+  - {fileID: 8300000, guid: fd4838b36b4237d41b494abc26434ccd, type: 3}
+  - {fileID: 8300000, guid: 9d8dda217f9277a4190a9e722542bd4a, type: 3}
+  - {fileID: 8300000, guid: e2b151c357bc3d848ab8ae87d63650f5, type: 3}
+  vulcanShot: {fileID: 8300000, guid: 14ba2f7d17b7a434f851c648484e0806, type: 3}
+  vulcanDelay: 0.1
+  vulcanHitDelay: 0.1
+  soloGunHit:
+  - {fileID: 8300000, guid: 77772fcc3692aae40a14a99b952c4168, type: 3}
+  - {fileID: 8300000, guid: 63f3836c15cf4de459c87f3181801d6c, type: 3}
+  - {fileID: 8300000, guid: d9eac4dfc29abe64faa49306ee4b4205, type: 3}
+  - {fileID: 8300000, guid: e9de0ff43b3234847b84dac0c1304373, type: 3}
+  soloGunShot: {fileID: 8300000, guid: b3325a8b2aa1db6408262e058666a0e2, type: 3}
+  soloGunDelay: 0.1
+  soloGunHitDelay: 0.1
+  sniperHit: []
+  sniperShot: {fileID: 0}
+  sniperDelay: 0
+  sniperHitDelay: 0
+  shotGunHit: []
+  shotGunShot: {fileID: 0}
+  shotGunDelay: 0
+  shotGunHitDelay: 0
+  seekerHit:
+  - {fileID: 8300000, guid: e49a8a34f479db846af1106a5fe97951, type: 3}
+  - {fileID: 8300000, guid: 75c2520332d47c543ab6ecbed510a94f, type: 3}
+  - {fileID: 8300000, guid: 0e06c997f66813242af742395e3e0dc3, type: 3}
+  seekerShot: {fileID: 8300000, guid: deb31dbb1a26c054891a4186c584a5d0, type: 3}
+  seekerDelay: 0.1
+  seekerHitDelay: 0.1
+  railgunHit: []
+  railgunShot: {fileID: 0}
+  railgunDelay: 0
+  railgunHitDelay: 0
+  plasmagunHit:
+  - {fileID: 8300000, guid: 81a346a7999a81243b8e6e18df6852ef, type: 3}
+  - {fileID: 8300000, guid: 58a24ee7c3371ff49bb6833b316f040a, type: 3}
+  - {fileID: 8300000, guid: b3325a8b2aa1db6408262e058666a0e2, type: 3}
+  - {fileID: 8300000, guid: 7c9ba602437be9b4f9271fb55179b1b0, type: 3}
+  plasmagunShot: {fileID: 8300000, guid: 1da3dd32414c56d41b46b52293cf7e4e, type: 3}
+  plasmagunDelay: 0.1
+  plasmagunHitDelay: 0.1
+  plasmabeamOpen: {fileID: 0}
+  plasmabeamLoop: {fileID: 0}
+  plasmabeamClose: {fileID: 0}
+  plasmabeamHeavyOpen: {fileID: 0}
+  plasmabeamHeavyLoop: {fileID: 0}
+  plasmabeamHeavyClose: {fileID: 0}
+  lightningGunOpen: {fileID: 0}
+  lightningGunLoop: {fileID: 0}
+  lightningGunClose: {fileID: 0}
+  flameGunOpen: {fileID: 0}
+  flameGunLoop: {fileID: 0}
+  flameGunClose: {fileID: 0}
+  laserImpulseHit:
+  - {fileID: 8300000, guid: 7ca11a0945a5da14e8281e45670ad7ef, type: 3}
+  - {fileID: 8300000, guid: d3b08de41108d154b83f1fba126cc359, type: 3}
+  - {fileID: 8300000, guid: 8acc3a66fd56dcc46b110c7a0d3213e4, type: 3}
+  - {fileID: 8300000, guid: b7ec6b248f1d72648ac6aef71fe447e9, type: 3}
+  - {fileID: 8300000, guid: 60ba8f3f1e4b1b145ad629b5ba4d5c0b, type: 3}
+  - {fileID: 8300000, guid: cc1180ee178a70e4db502919244f6755, type: 3}
+  - {fileID: 8300000, guid: 4a5f1abf2aef3f84986f73751d63fc11, type: 3}
+  laserImpulseShot: {fileID: 8300000, guid: 15a3211a3c389664a94d401850cad8c7, type: 3}
+  laserImpulseDelay: 0.1
+  laserImpulseHitDelay: 0.1
 --- !u!1001 &1685956429
 Prefab:
   m_ObjectHideFlags: 0
@@ -3785,7 +3832,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 473742, guid: 39332a43c68770e47ba274b4aadca0e6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 473742, guid: 39332a43c68770e47ba274b4aadca0e6, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y

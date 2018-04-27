@@ -14,11 +14,16 @@ namespace Forge3D
         Seeker,
         RailGun,
         PlasmaGun,
+        LaserImpulse
+    }
+
+
+    public enum F3DFXLaserType
+    {
         PlasmaBeam,
         PlasmaBeamHeavy,
         LightningGun,
-        FlameRed,
-        LaserImpulse
+        FlameRed
     }
 
     public class F3DFXController : MonoBehaviour
@@ -29,8 +34,8 @@ namespace Forge3D
         // GUI captions
         string[] fxTypeName =
         {
-            "Vulcan", "Sologun", "Seeker", "Railgun", "Plasmagun", "Plasma beam",
-            "Heavy plasma beam", "Lightning gun",  "Pulse laser"
+            "Vulcan", "Sologun", "Sniper", "Shotgun", "Seeker", "Railgun", "Plasmagun", "Plasma beam",
+            "Heavy plasma beam", "Lightning gun", "Flamethrower", "Pulse laser"
         };
 
         // Current firing socket
@@ -42,6 +47,7 @@ namespace Forge3D
         public ParticleSystem[] ShellParticles; // Bullet shells particle system
 
         public F3DFXType DefaultFXType; // Default starting weapon type
+        public F3DFXLaserType DefaultLaserFXType;
 
         [Header("Vulcan")] public Transform vulcanProjectile; // Projectile prefab
         public Transform vulcanMuzzle; // Muzzle flash prefab  
@@ -109,7 +115,7 @@ namespace Forge3D
             }*/
         }
 
-        // Display GUI
+        //// Display GUI
         //void OnGUI()
         //{
         //    GUIStyle caption = new GUIStyle(GUI.skin.label);
@@ -163,32 +169,32 @@ namespace Forge3D
         //    GUILayout.EndArea();
         //}
 
-        void Update()
-        {
-            // Switch weapon types using keyboard keys
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-                NextWeapon();
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                PrevWeapon();
-        }
+        //void Update()
+        //{
+        //    //Switch weapon types using keyboard keys
+        //    if (Input.GetKeyDown(KeyCode.RightArrow))
+        //            NextWeapon();
+        //        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //            PrevWeapon();
+        //}
 
-        // Switch to next weapon type
-        void NextWeapon()
-        {
-            if ((int) DefaultFXType < Enum.GetNames(typeof (F3DFXType)).Length - 1)
-            {
-                DefaultFXType++;
-            }
-        }
+        //// Switch to next weapon type
+        //void NextWeapon()
+        //{
+        //    if ((int) DefaultFXType < Enum.GetNames(typeof (F3DFXType)).Length - 1)
+        //    {
+        //        DefaultFXType++;
+        //    }
+        //}
 
-        // Switch to previous weapon type
-        void PrevWeapon()
-        {
-            if (DefaultFXType > 0)
-            {
-                DefaultFXType--;
-            }
-        }
+        //// Switch to previous weapon type
+        //void PrevWeapon()
+        //{
+        //    if (DefaultFXType > 0)
+        //    {
+        //        DefaultFXType--;
+        //    }
+        //}
 
         // Advance to next turret socket
         void AdvanceSocket()
@@ -240,29 +246,37 @@ namespace Forge3D
                     PlasmaGun();
                     break;
 
-                case F3DFXType.PlasmaBeam:
-                    // Beams has no timer requirement
-                    PlasmaBeam();
-                    break;
-
-                case F3DFXType.PlasmaBeamHeavy:
-                    // Beams has no timer requirement
-                    PlasmaBeamHeavy();
-                    break;
-
-                case F3DFXType.LightningGun:
-                    // Beams has no timer requirement
-                    LightningGun();
-                    break;
-
-                case F3DFXType.FlameRed:
-                    // Flames has no timer requirement
-                    FlameRed();
-                    break;
+               
 
                 case F3DFXType.LaserImpulse:
                     timerID = F3DTime.time.AddTimer(0.15f, LaserImpulse);
                     LaserImpulse();
+                    break;
+            }
+        }
+
+        public void FireLaser()
+        {
+            switch (DefaultLaserFXType)
+            {
+                case F3DFXLaserType.PlasmaBeam:
+                    // Beams has no timer requirement
+                    PlasmaBeam();
+                    break;
+
+                case F3DFXLaserType.PlasmaBeamHeavy:
+                    // Beams has no timer requirement
+                    PlasmaBeamHeavy();
+                    break;
+
+                case F3DFXLaserType.LightningGun:
+                    // Beams has no timer requirement
+                    LightningGun();
+                    break;
+
+                case F3DFXLaserType.FlameRed:
+                    // Flames has no timer requirement
+                    FlameRed();
                     break;
             }
         }
@@ -276,21 +290,25 @@ namespace Forge3D
                 F3DTime.time.RemoveTimer(timerID);
                 timerID = -1;
             }
-            switch (DefaultFXType)
+        }
+
+        public void StopLaser()
+        {
+            switch (DefaultLaserFXType)
             {
-                case F3DFXType.PlasmaBeam:
+                case F3DFXLaserType.PlasmaBeam:
                     F3DAudioController.instance.PlasmaBeamClose(transform.position);
                     break;
 
-                case F3DFXType.PlasmaBeamHeavy:
+                case F3DFXLaserType.PlasmaBeamHeavy:
                     F3DAudioController.instance.PlasmaBeamHeavyClose(transform.position);
                     break;
 
-                case F3DFXType.LightningGun:
+                case F3DFXLaserType.LightningGun:
                     F3DAudioController.instance.LightningGunClose(transform.position);
                     break;
 
-                case F3DFXType.FlameRed:
+                case F3DFXLaserType.FlameRed:
                     F3DAudioController.instance.FlameGunClose(transform.position);
                     break;
             }
@@ -413,7 +431,6 @@ namespace Forge3D
                 F3DPoolManager.Pools["GeneratedPool"].Spawn(seekerProjectile, TurretSocket[curSocket].position,
                     offset*TurretSocket[curSocket].rotation, null).gameObject as GameObject;
             F3DProjectile proj = newGO.GetComponent<F3DProjectile>();
-
             if (proj)
             {
                 proj.SetOffset(seekerOffset);

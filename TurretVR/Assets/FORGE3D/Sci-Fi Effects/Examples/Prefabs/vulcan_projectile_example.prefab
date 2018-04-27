@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 62.76245, y: 56.816925, z: 42.384224}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
   - {fileID: 400004}
@@ -195,7 +195,6 @@ MonoBehaviour:
   RaycastAdvance: 2
   DelayDespawn: 0
   delayedParticles: []
-  damage: 3
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

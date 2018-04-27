@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1393d0f3c350e4981d23bc526f480d, type: 3}
+  m_Name: DefaultDatabase
+  m_EditorClassIdentifier: 
+  poolsName: []
+  pools:
+  - poolName: GeneratedPool
+    templates:
+    - {fileID: 400000, guid: 8319acb870e2b61459efb2ff33d19e45, type: 2}
+    - {fileID: 400010, guid: 7eb2b3ca853ef0844af0e1fb9c4c4e9b, type: 2}
+    - {fileID: 400004, guid: 201390457f7593b4f9c33fbb0da30117, type: 2}
+    - {fileID: 400000, guid: 9eeb3f92e3355994db8dc67cb3ea8ba0, type: 2}
+    - {fileID: 400000, guid: dad65925df464a64985ee2ef54c46de9, type: 2}
+    - {fileID: 400002, guid: 0e4058e433eefd84daceef628b41d17b, type: 2}
+    - {fileID: 400000, guid: 78137ee2097a6f2468a9b6b1f07cd713, type: 2}
+    - {fileID: 400004, guid: edca52d218c2de14397761ae1133b0b4, type: 2}
+    - {fileID: 400012, guid: 157253c33b5e2ae4c99dd92c193b5413, type: 2}
+    - {fileID: 400000, guid: 170838e8060e02542afa9f81e59fed08, type: 2}
+    - {fileID: 400000, guid: 1cbda689bb465ea49b41a3db35577a6d, type: 2}
+    - {fileID: 400002, guid: 0193a223b1a2f4a4fb1e7fecea3ac974, type: 2}
+    - {fileID: 400004, guid: 5c29cdc4a3e0fd147ade7cd90140990b, type: 2}
+    - {fileID: 400004, guid: b68468ea19b581744b2449b90138eba4, type: 2}
+    - {fileID: 400004, guid: c11b4eb4cffd2ae48a0e0193080e7e8c, type: 2}
+    - {fileID: 400010, guid: 80956a8a13cfcbb449c4d60fd594c165, type: 2}
+    - {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
+    poolLength: 1900000019000000190000003200000019000000190000001900000032000000320000003200000032000000320000003200000032000000320000003200000014000000
+    poolLengthMax: 1900000019000000190000003200000019000000190000001900000032000000320000003200000032000000320000003200000032000000320000003200000014000000
+    broadcastSpawnName: OnSpawned
+    broadcastDespawnName: OnDespawned
+    delayedSpawnInInstall: 1
+    objectsPerUpdate: 5
+    needBroadcasting: 1
+    optimizeSpawn: 1
+    targetFPS: 50
+    pooling: 1
+    needSort: 1
+    needParenting: 1
+    needDebug: 0
+  namer: DefaultDatabase

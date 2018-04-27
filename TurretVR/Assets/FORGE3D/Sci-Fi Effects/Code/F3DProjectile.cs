@@ -20,9 +20,7 @@ namespace Forge3D
         bool isFXSpawned = false; // Hit FX prefab spawned flag 
         float timer = 0f; // Projectile timer
         float fxOffset; // Offset of fxImpact
-
-        [SerializeField] private float damage = 3f;
-        
+        public float damage = 3f;
 
         void Awake()
         {
@@ -44,7 +42,6 @@ namespace Forge3D
         // OnDespawned called by pool manager 
         public void OnDespawned()
         {
-            Destroy(gameObject);
         }
 
         // Stop attached particle systems emission and allow them to fade out before despawning
@@ -78,9 +75,14 @@ namespace Forge3D
         // Apply hit force on impact
         void ApplyForce(float force)
         {
-            //if (hitPoint.rigidbody != null)
-            //    hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
+            if (hitPoint.rigidbody != null)
+                hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
 
+            Damage();
+        }
+
+        void Damage()
+        {
             if (hitPoint.transform.gameObject != null)
             {
                 var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
@@ -140,7 +142,7 @@ namespace Forge3D
             else
             {
                 // Projectile step per frame based on velocity and time
-                Vector3 step = transform.forward * Time.deltaTime * velocity;
+                Vector3 step = transform.forward*Time.deltaTime*velocity;
 
                 // Raycast for targets with ray length based on frame step by ray cast advance multiplier
                 if (Physics.Raycast(transform.position, transform.forward, out hitPoint, step.magnitude*RaycastAdvance,

@@ -8,7 +8,7 @@ namespace Forge3D
     {
         public LayerMask layerMask;
 
-        public F3DFXType fxType; // Weapon type
+        public F3DFXLaserType fxType; // Weapon type
         public bool OneShot; // Constant or single beam?
 
         public Texture[] BeamFrames; // Animation frame sequence
@@ -32,8 +32,6 @@ namespace Forge3D
         float beamLength; // Current beam length
         float initialBeamOffset; // Initial UV offset 
         public float fxOffset; // Fx offset from bullet's touch point      
-
-        [SerializeField] private float damage = 0.1f;
 
         void Awake()
         {
@@ -95,21 +93,21 @@ namespace Forge3D
                 // Spawn prefabs and apply force
                 switch (fxType)
                 {
-                    case F3DFXType.Sniper:
-                        F3DFXController.instance.SniperImpact(hitPoint.point + hitPoint.normal*fxOffset);
-                        ApplyForce(4f);
-                        break;
+                    //case F3DFXType.Sniper:
+                    //    F3DFXController.instance.SniperImpact(hitPoint.point + hitPoint.normal*fxOffset);
+                    //    ApplyForce(4f);
+                    //    break;
 
-                    case F3DFXType.RailGun:
-                        F3DFXController.instance.RailgunImpact(hitPoint.point + hitPoint.normal*fxOffset);
-                        ApplyForce(7f);
-                        break;
+                    //case F3DFXType.RailGun:
+                    //    F3DFXController.instance.RailgunImpact(hitPoint.point + hitPoint.normal*fxOffset);
+                    //    ApplyForce(7f);
+                    //    break;
 
-                    case F3DFXType.PlasmaBeam:
+                    case F3DFXLaserType.PlasmaBeam:
                         ApplyForce(0.5f);
                         break;
 
-                    case F3DFXType.PlasmaBeamHeavy:
+                    case F3DFXLaserType.PlasmaBeamHeavy:
                         ApplyForce(2f);
                         break;
                 }
@@ -134,22 +132,22 @@ namespace Forge3D
                     // Spawn prefabs and apply force
                     switch (fxType)
                     {
-                        case F3DFXType.Sniper:
+                        //case F3DFXType.Sniper:
 
-                            F3DFXController.instance.SniperImpact(ray2D.point + ray2D.normal*fxOffset);
-                            ApplyForce(4f);
-                            break;
+                        //    F3DFXController.instance.SniperImpact(ray2D.point + ray2D.normal*fxOffset);
+                        //    ApplyForce(4f);
+                        //    break;
 
-                        case F3DFXType.RailGun:
-                            F3DFXController.instance.RailgunImpact(ray2D.point + ray2D.normal*fxOffset);
-                            ApplyForce(7f);
-                            break;
+                        //case F3DFXType.RailGun:
+                        //    F3DFXController.instance.RailgunImpact(ray2D.point + ray2D.normal*fxOffset);
+                        //    ApplyForce(7f);
+                        //    break;
 
-                        case F3DFXType.PlasmaBeam:
+                        case F3DFXLaserType.PlasmaBeam:
                             ApplyForce(0.5f);
                             break;
 
-                        case F3DFXType.PlasmaBeamHeavy:
+                        case F3DFXLaserType.PlasmaBeamHeavy:
                             ApplyForce(2f);
                             break;
                     }
@@ -212,17 +210,8 @@ namespace Forge3D
         // Apply force to last hit object
         void ApplyForce(float force)
         {
-            //if (hitPoint.rigidbody != null)
-            //    hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
-
-            if (hitPoint.transform.gameObject != null)
-            {
-                var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(damage);
-                }
-            }
+            if (hitPoint.rigidbody != null)
+                hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
         }  
 
         // Set offset of impact

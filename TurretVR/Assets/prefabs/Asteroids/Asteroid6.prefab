@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
+  newExplosion: {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
   hitPoints: 12
   moveSpeed: 0.1
   score: 5
@@ -122,6 +123,7 @@ MonoBehaviour:
   resorceProbability: 0.1
   rotationSpeed: 1
   debuff: {fileID: 114904634479761950, guid: 5d12bfe17078e734ab570237ae108c82, type: 2}
+  CollisionDamage: 0
 --- !u!114 &114735736434222234
 MonoBehaviour:
   m_ObjectHideFlags: 1

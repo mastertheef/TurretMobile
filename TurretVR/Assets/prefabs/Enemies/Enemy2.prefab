@@ -475,6 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
+  newExplosion: {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
   hitPoints: 15
   moveSpeed: 0.05
   score: 5
