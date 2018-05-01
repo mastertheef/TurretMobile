@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 12000000}
   - component: {fileID: 11400000}
+  - component: {fileID: 114224348816537616}
   m_Layer: 0
   m_Name: plasma_beam_blue
   m_TagString: Untagged
@@ -264,18 +265,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  fxType: 7
+    m_Bits: 4294967295
+  fxType: 0
   OneShot: 0
   BeamFrames: []
   FrameStep: 0.04
   beamScale: 0.5
-  MaxBeamLength: 100
+  MaxBeamLength: 500
   AnimateUV: 1
   UVTime: -6
   rayImpact: {fileID: 400008}
   rayMuzzle: {fileID: 400010}
   fxOffset: 0
+  damage: 50
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -286,7 +288,7 @@ LineRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
@@ -17297,3 +17299,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
+--- !u!114 &114224348816537616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnDelay: 3
+  DespawnOnMouseUp: 0

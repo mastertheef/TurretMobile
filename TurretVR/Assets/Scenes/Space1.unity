@@ -1014,6 +1014,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114505134408973886, guid: 797b2f9c77876b042aebb9d88081f55c,
+        type: 2}
+      propertyPath: MaxLaserCharges
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65390154837974792, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 797b2f9c77876b042aebb9d88081f55c, type: 2}
@@ -1057,7 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   databaseName: DefaultDatabase
   selectedItem: 0
-  haveToShowArr: 0000000000000000000000000000000000
+  haveToShowArr: 00000000000000000000000000000000000000
 --- !u!4 &264201934
 Transform:
   m_ObjectHideFlags: 0
@@ -1717,8 +1722,8 @@ MonoBehaviour:
   - {fileID: 263289152}
   - {fileID: 263289151}
   ShellParticles: []
-  DefaultFXType: 7
-  DefaultLaserFXType: 0
+  DefaultFXType: 1
+  DefaultLaserFXType: 1
   vulcanProjectile: {fileID: 400000, guid: dad65925df464a64985ee2ef54c46de9, type: 2}
   vulcanMuzzle: {fileID: 400002, guid: 0e4058e433eefd84daceef628b41d17b, type: 2}
   vulcanImpact: {fileID: 400000, guid: 78137ee2097a6f2468a9b6b1f07cd713, type: 2}
@@ -1747,9 +1752,9 @@ MonoBehaviour:
   plasmagunMuzzle: {fileID: 400002, guid: 0193a223b1a2f4a4fb1e7fecea3ac974, type: 2}
   plasmagunImpact: {fileID: 400004, guid: 5c29cdc4a3e0fd147ade7cd90140990b, type: 2}
   plasmaGunOffset: 0
-  plasmaBeam: {fileID: 400000, guid: 66b50793fa1c780409218a1a1db5b1d8, type: 2}
+  plasmaBeam: {fileID: 400000, guid: 89cb877a865fa5243ac7332099360e82, type: 2}
   plasmaOffset: 0
-  plasmaBeamHeavy: {fileID: 400000, guid: a5251bb5b54465f43aebe1ddc2724566, type: 2}
+  plasmaBeamHeavy: {fileID: 400000, guid: 491c3c56c00911e4faddec265f4f4a96, type: 2}
   plasmaBeamHeavyOffset: 0
   lightningGunBeam: {fileID: 400002, guid: 497cce4f043498049994c48e6e47f0ae, type: 2}
   lightingGunBeamOffset: 0
@@ -2941,10 +2946,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missions:
   - {fileID: 114698569873678034, guid: 472313cbe4884754aa77ce8c13190154, type: 2}
-  canUseLaser: 0
+  canUseLaser: 1
   canUseRockets: 0
   startRocketsCount: 0
-  startLaserCount: 0
+  startLaserCount: 6
 --- !u!4 &1282646546
 Transform:
   m_ObjectHideFlags: 0
@@ -3772,15 +3777,16 @@ MonoBehaviour:
   plasmagunShot: {fileID: 8300000, guid: 1da3dd32414c56d41b46b52293cf7e4e, type: 3}
   plasmagunDelay: 0.1
   plasmagunHitDelay: 0.1
-  plasmabeamOpen: {fileID: 0}
-  plasmabeamLoop: {fileID: 0}
-  plasmabeamClose: {fileID: 0}
-  plasmabeamHeavyOpen: {fileID: 0}
-  plasmabeamHeavyLoop: {fileID: 0}
-  plasmabeamHeavyClose: {fileID: 0}
-  lightningGunOpen: {fileID: 0}
-  lightningGunLoop: {fileID: 0}
-  lightningGunClose: {fileID: 0}
+  plasmabeamOpen: {fileID: 8300000, guid: efa34f6c791b62249aea6d9dbfbd1087, type: 3}
+  plasmabeamLoop: {fileID: 8300000, guid: 959e88d28b35e2c419016ab8ee0d9e9d, type: 3}
+  plasmabeamClose: {fileID: 8300000, guid: 650a66a33ed959c4aa39de2afb9fdbb5, type: 3}
+  plasmabeamHeavyOpen: {fileID: 8300000, guid: efa34f6c791b62249aea6d9dbfbd1087, type: 3}
+  plasmabeamHeavyLoop: {fileID: 8300000, guid: 959e88d28b35e2c419016ab8ee0d9e9d, type: 3}
+  plasmabeamHeavyClose: {fileID: 8300000, guid: 650a66a33ed959c4aa39de2afb9fdbb5,
+    type: 3}
+  lightningGunOpen: {fileID: 8300000, guid: 51f46968ed339684b975b62416e9bd8e, type: 3}
+  lightningGunLoop: {fileID: 8300000, guid: 206809617a9f6dc4e813dfc96abc1da3, type: 3}
+  lightningGunClose: {fileID: 8300000, guid: 59ae4c7218192d443af48fa96d0883fe, type: 3}
   flameGunOpen: {fileID: 0}
   flameGunLoop: {fileID: 0}
   flameGunClose: {fileID: 0}

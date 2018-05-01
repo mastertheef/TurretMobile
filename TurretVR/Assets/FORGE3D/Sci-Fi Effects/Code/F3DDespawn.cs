@@ -37,7 +37,10 @@ namespace Forge3D
             if (aSrc != null)
             {
                 if (aSrc.loop)
+                {
                     DespawnOnMouseUp = true;
+                    Despawn();
+                }
                 else
                 {
                     DespawnOnMouseUp = false;

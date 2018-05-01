@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Forge3D;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,16 +22,19 @@ public class LaserBeamController : Singleton<LaserBeamController> {
     private Coroutine blinking;
     private Image currentCharge;
     private List<Image> chargeImages;
-    
-	// Use this for initialization
-	void Start () {
+    private F3DFXController fxController;
+
+
+    // Use this for initialization
+    void Start () {
         LaserCharges = MissionsManager.Instance.StartLaserCount;
         chargeImages = new List<Image>();
         for (int i = 0; i<LaserCharges; i++)
         {
              chargeImages.Add(Instantiate(ChareImagePrefab, ChargesPanel));
         }
-	}
+        fxController = GetComponent<F3DFXController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,9 +50,12 @@ public class LaserBeamController : Singleton<LaserBeamController> {
     {
         LaserCharges--;
         isFiring = true;
-        lasers.ForEach(x => x.Fire());
+        //lasers.ForEach(x => x.Fire());
+        fxController.FireLaser();
         yield return new WaitForSeconds(ChargeDuration);
-        lasers.ForEach(x => x.StopFire());
+        //lasers.ForEach(x => x.StopFire());
+        //fxController.StopLaser();
+
         isFiring = false;
         StopCoroutine(blinking);
         chargeImages.Remove(currentCharge);

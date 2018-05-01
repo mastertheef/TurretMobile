@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 12000000}
   - component: {fileID: 11400000}
+  - component: {fileID: 114813847820971982}
   m_Layer: 0
   m_Name: plasma_beam_heavy_red
   m_TagString: Untagged
@@ -265,8 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  fxType: 8
+    m_Bits: 4294967295
+  fxType: 1
   OneShot: 0
   BeamFrames: []
   FrameStep: 0.001
@@ -277,6 +278,7 @@ MonoBehaviour:
   rayImpact: {fileID: 400010}
   rayMuzzle: {fileID: 400002}
   fxOffset: 0
+  damage: 50
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17311,3 +17313,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
+--- !u!114 &114813847820971982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnDelay: 3
+  DespawnOnMouseUp: 0

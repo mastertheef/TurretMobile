@@ -267,7 +267,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  fxType: 8
+  fxType: 1
   OneShot: 0
   BeamFrames: []
   FrameStep: 0.001
@@ -278,6 +278,7 @@ MonoBehaviour:
   rayImpact: {fileID: 400010}
   rayMuzzle: {fileID: 400002}
   fxOffset: 0
+  damage: 50
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

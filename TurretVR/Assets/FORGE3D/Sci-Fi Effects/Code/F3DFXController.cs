@@ -9,10 +9,10 @@ namespace Forge3D
     {
         Vulcan,
         SoloGun,
-        Sniper,
-        ShotGun,
+        //Sniper,
+        //ShotGun,
         Seeker,
-        RailGun,
+        //RailGun,
         PlasmaGun,
         LaserImpulse
     }
@@ -221,25 +221,25 @@ namespace Forge3D
                     SoloGun();
                     break;
 
-                case F3DFXType.Sniper:
-                    timerID = F3DTime.time.AddTimer(0.3f, Sniper);
-                    Sniper();
-                    break;
+                //case F3DFXType.Sniper:
+                //    timerID = F3DTime.time.AddTimer(0.3f, Sniper);
+                //    Sniper();
+                //    break;
 
-                case F3DFXType.ShotGun:
-                    timerID = F3DTime.time.AddTimer(0.3f, ShotGun);
-                    ShotGun();
-                    break;
+                //case F3DFXType.ShotGun:
+                //    timerID = F3DTime.time.AddTimer(0.3f, ShotGun);
+                //    ShotGun();
+                //    break;
 
                 case F3DFXType.Seeker:
                     timerID = F3DTime.time.AddTimer(0.2f, Seeker);
                     Seeker();
                     break;
 
-                case F3DFXType.RailGun:
-                    timerID = F3DTime.time.AddTimer(0.2f, RailGun);
-                    RailGun();
-                    break;
+                //case F3DFXType.RailGun:
+                //    timerID = F3DTime.time.AddTimer(0.2f, RailGun);
+                //    RailGun();
+                //    break;
 
                 case F3DFXType.PlasmaGun:
                     timerID = F3DTime.time.AddTimer(0.2f, PlasmaGun);

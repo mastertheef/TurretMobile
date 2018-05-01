@@ -2,8 +2,8 @@
 using System.Collections;
 
 namespace Forge3D
-{ 
-    [RequireComponent(typeof (LineRenderer))]
+{
+    [RequireComponent(typeof(LineRenderer))]
     public class F3DBeam : MonoBehaviour
     {
         public LayerMask layerMask;
@@ -32,6 +32,8 @@ namespace Forge3D
         float beamLength; // Current beam length
         float initialBeamOffset; // Initial UV offset 
         public float fxOffset; // Fx offset from bullet's touch point      
+
+        public float damage = 50f;
 
         void Awake()
         {
@@ -70,16 +72,18 @@ namespace Forge3D
                 F3DTime.time.RemoveTimer(FrameTimerID);
                 FrameTimerID = -1;
             }
+
+            F3DAudioController.instance.PlasmaBeamHeavyClose(transform.position);
         }
 
         // Hit point calculation
         void Raycast()
-        { 
+        {
             // Prepare structure and create ray
             hitPoint = new RaycastHit();
             Ray ray = new Ray(transform.position, transform.forward);
             // Calculate default beam proportion multiplier based on default scale and maximum length
-            float propMult = MaxBeamLength*(beamScale/10f);
+            float propMult = MaxBeamLength * (beamScale / 10f);
 
             // Raycast
             if (Physics.Raycast(ray, out hitPoint, MaxBeamLength, layerMask))
@@ -89,7 +93,7 @@ namespace Forge3D
                 lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamLength));
 
                 // Calculate default beam proportion multiplier based on default scale and current length
-                propMult = beamLength*(beamScale/10f);
+                propMult = beamLength * (beamScale / 10f);
                 // Spawn prefabs and apply force
                 switch (fxType)
                 {
@@ -114,7 +118,7 @@ namespace Forge3D
 
                 // Adjust impact effect position
                 if (rayImpact)
-                    rayImpact.position = hitPoint.point - transform.forward*0.5f;
+                    rayImpact.position = hitPoint.point - transform.forward * 0.5f;
             }
             //checking in 2d mode
             else
@@ -128,7 +132,7 @@ namespace Forge3D
                     lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamLength));
 
                     // Calculate default beam proportion multiplier based on default scale and current length
-                    propMult = beamLength*(beamScale/10f);
+                    propMult = beamLength * (beamScale / 10f);
                     // Spawn prefabs and apply force
                     switch (fxType)
                     {
@@ -156,7 +160,7 @@ namespace Forge3D
                     if (rayImpact)
                         rayImpact.position = new Vector3(ray2D.point.x,
                             ray2D.point.y,
-                            this.gameObject.transform.position.z) - transform.forward*0.5f;
+                            this.gameObject.transform.position.z) - transform.forward * 0.5f;
                 }
                 // Nothing was his
                 else
@@ -167,13 +171,13 @@ namespace Forge3D
 
                     // Adjust impact effect position
                     if (rayImpact)
-                        rayImpact.position = transform.position + transform.forward*beamLength;
+                        rayImpact.position = transform.position + transform.forward * beamLength;
                 }
             }
 
             // Adjust muzzle position
             if (rayMuzzle)
-                rayMuzzle.position = transform.position + transform.forward*0.1f;
+                rayMuzzle.position = transform.position + transform.forward * 0.1f;
 
             // Set beam scaling according to its length
             lineRenderer.material.SetTextureScale("_MainTex", new Vector2(propMult, 1f));
@@ -210,9 +214,18 @@ namespace Forge3D
         // Apply force to last hit object
         void ApplyForce(float force)
         {
-            if (hitPoint.rigidbody != null)
-                hitPoint.rigidbody.AddForceAtPosition(transform.forward*force, hitPoint.point, ForceMode.VelocityChange);
-        }  
+            //if (hitPoint.rigidbody != null)
+            //    hitPoint.rigidbody.AddForceAtPosition(transform.forward * force, hitPoint.point, ForceMode.VelocityChange);
+
+            if (hitPoint.transform.gameObject != null)
+            {
+                var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
+            }
+        }
 
         // Set offset of impact
         public void SetOffset(float offset)
