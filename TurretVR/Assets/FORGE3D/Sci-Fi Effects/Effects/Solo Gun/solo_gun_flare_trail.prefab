@@ -111,6 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400012}
   - component: {fileID: 114638293519632722}
+  - component: {fileID: 114668331151881208}
   m_Layer: 0
   m_Name: solo_gun_flare_trail
   m_TagString: Untagged
@@ -204,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.85314, y: 49.690063, z: 48.24353}
-  m_LocalScale: {x: 1.39, y: 1.39, z: 1.39}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 400006}
   - {fileID: 400000}
@@ -14528,14 +14529,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxType: 0
+  fxType: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  lifeTime: 5
+    m_Bits: 4294967295
+  lifeTime: 2
   despawnDelay: 0
   velocity: 300
   RaycastAdvance: 2
   DelayDespawn: 0
   delayedParticles: []
   damage: 1
+--- !u!114 &114668331151881208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5693e1507ea5235488f93c109111dbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleScale: 10
+  ScaleGameobject: 1

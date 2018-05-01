@@ -200,7 +200,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  lifeTime: 2
+  lifeTime: 1
   despawnDelay: 0
   velocity: 350
   RaycastAdvance: 2
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomScale: 1
   RandomRotation: 1
-  MinScale: 4
+  MinScale: 3
   MaxScale: 5
   MinRotation: -360
   MaxRotaion: 360

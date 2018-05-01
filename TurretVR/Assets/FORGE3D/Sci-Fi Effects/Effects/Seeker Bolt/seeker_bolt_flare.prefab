@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
   - component: {fileID: 114712007697784444}
+  - component: {fileID: 114032775661986792}
   m_Layer: 0
   m_Name: seeker_bolt_flare
   m_TagString: Untagged
@@ -7002,6 +7003,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
+--- !u!114 &114032775661986792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5693e1507ea5235488f93c109111dbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleScale: 5
+  ScaleGameobject: 1
 --- !u!114 &114712007697784444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7013,10 +7027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxType: 0
+  fxType: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   lifeTime: 5
   despawnDelay: 0
   velocity: 300

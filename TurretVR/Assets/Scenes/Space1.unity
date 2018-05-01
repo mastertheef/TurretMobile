@@ -1717,7 +1717,7 @@ MonoBehaviour:
   - {fileID: 263289152}
   - {fileID: 263289151}
   ShellParticles: []
-  DefaultFXType: 0
+  DefaultFXType: 7
   DefaultLaserFXType: 0
   vulcanProjectile: {fileID: 400000, guid: dad65925df464a64985ee2ef54c46de9, type: 2}
   vulcanMuzzle: {fileID: 400002, guid: 0e4058e433eefd84daceef628b41d17b, type: 2}
@@ -1755,10 +1755,10 @@ MonoBehaviour:
   lightingGunBeamOffset: 0
   flameRed: {fileID: 400002, guid: bd9162be33a5ce54aa35d8e984e6d39d, type: 2}
   flameOffset: 0
-  laserImpulseProjectile: {fileID: 400004, guid: 64703ac190f718b4abd5d10cb23c96ce,
+  laserImpulseProjectile: {fileID: 400004, guid: b68468ea19b581744b2449b90138eba4,
     type: 2}
-  laserImpulseMuzzle: {fileID: 400004, guid: 45116fb1512dc704b99d70267628129a, type: 2}
-  laserImpulseImpact: {fileID: 400010, guid: ce59e020d922ccb43866dee1ba26a673, type: 2}
+  laserImpulseMuzzle: {fileID: 400004, guid: c11b4eb4cffd2ae48a0e0193080e7e8c, type: 2}
+  laserImpulseImpact: {fileID: 400010, guid: 80956a8a13cfcbb449c4d60fd594c165, type: 2}
   laserImpulseOffset: 0
 --- !u!114 &501424719
 MonoBehaviour:
