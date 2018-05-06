@@ -22,6 +22,11 @@ TagManager:
   - Rocket
   - Boss
   - BossRocket
+  - SpaceScene_Nebula
+  - SpaceScene_Galaxy
+  - SpaceScene_Planet
+  - SpaceScene_Camera
+  - SpaceScene_LocalStar
   layers:
   - Default
   - TransparentFX
@@ -43,7 +48,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - DeepSpace
   - 
   - 
   - 

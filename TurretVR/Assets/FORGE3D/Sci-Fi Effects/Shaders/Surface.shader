@@ -40,7 +40,7 @@ Shader "FORGE3D/Surface" {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #define UNITY_PASS_FORWARDBASE
+            //#define UNITY_PASS_FORWARDBASE
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #pragma multi_compile_fwdbase_fullshadows
@@ -183,7 +183,7 @@ Shader "FORGE3D/Surface" {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #define UNITY_PASS_FORWARDADD
+            //#define UNITY_PASS_FORWARDADD
             #include "UnityCG.cginc"
             #include "AutoLight.cginc"
             #pragma multi_compile_fwdadd_fullshadows
@@ -275,6 +275,7 @@ Shader "FORGE3D/Surface" {
                 // light
                 float3 lightDir = normalize(lerp(_WorldSpaceLightPos0.xyz, _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));
                 float attenuation = LIGHT_ATTENUATION(i);
+
                 float3 ambient = UNITY_LIGHTMODEL_AMBIENT.rgb;
 
                 // view, half, reflect

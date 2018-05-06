@@ -12,6 +12,7 @@ public class SceneController : CrossSceneSingleton<SceneController> {
     public CanvasGroup faderCanvasGroup;
     public float fadeDuration = 1f;
     public string startingSceneName = "StartScreen";
+    public Camera camera;
 
     public float FinalScore { get; set; }
 
@@ -44,9 +45,11 @@ public class SceneController : CrossSceneSingleton<SceneController> {
     }
     private IEnumerator LoadSceneAndSetActive(string sceneName)
     {
+        camera.enabled = true;
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(newlyLoadedScene);
+        camera.enabled = false;
     }
     private IEnumerator Fade(float finalAlpha)
     {
@@ -61,5 +64,6 @@ public class SceneController : CrossSceneSingleton<SceneController> {
         }
         isFading = false;
         //faderCanvasGroup.blocksRaycasts = false;
+        
     }
 }

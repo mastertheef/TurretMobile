@@ -38,7 +38,7 @@ Shader "FORGE3D/Exhaust Flame" {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #define UNITY_PASS_FORWARDBASE
+            //#define UNITY_PASS_FORWARDBASE
             #include "UnityCG.cginc"
             #pragma multi_compile_fwdbase
             #pragma exclude_renderers xbox360 ps3 flash d3d11_9x 

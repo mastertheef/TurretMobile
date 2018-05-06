@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400004}
   - component: {fileID: 114311567438650922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: laser_impulse_projectile_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,10 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxType: 7
+  fxType: 4
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4293918719
   lifeTime: 5
   despawnDelay: 0
   velocity: 300
