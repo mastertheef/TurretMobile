@@ -7,7 +7,6 @@ using UnityEngine;
 public class Rocket : Projectile {
 
     [SerializeField] private Explosion explosion;
-    [SerializeField] private float ttl = 10;
     private GameObject target;
     private bool isExploded = false;
     private float motherShipOffset;
@@ -32,7 +31,7 @@ public class Rocket : Projectile {
 
     private IEnumerator TimeToLive()
     {
-        yield return new WaitForSeconds(ttl);
+        yield return new WaitForSeconds(TTL);
         StartCoroutine(Explode());
     }
 	
@@ -41,12 +40,12 @@ public class Rocket : Projectile {
         string colTag = collision.gameObject.tag;
         if (colTag == "EnemyShip")
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             StartCoroutine(Explode());
         }
         else if (colTag == "EnemyPart")
         {
-            collision.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
+            collision.gameObject.GetComponentInParent<Health>().TakeDamage(damage);
             StartCoroutine(Explode());
         }
         else if (colTag == "Boss")
@@ -100,11 +99,9 @@ public class Rocket : Projectile {
         return point.z > 0 && point.x > 0 && point.x < 1 && point.y > 0 && point.y < 1;
     }
 
-    protected override IEnumerator Move()
+    protected IEnumerator Move()
     {
-        
-        while (GetDistance() < ShotMaxRange)
-        {
+
             if (target == null || target.GetComponent<Enemy>().IsExploded)
             {
                 target = FindNearestTarget();
@@ -120,16 +117,14 @@ public class Rocket : Projectile {
 
                 Vector3 targetPosition = new Vector3(target.transform.position.x - motherShipOffset, target.transform.position.y, target.transform.position.z);
 
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, ShotSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, projectileSpeed * Time.deltaTime);
             }
             else
             {
-                transform.Translate(Vector3.forward * ShotSpeed * Time.deltaTime);
+                transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
             }
             yield return null;
-        }
-
-        Destroy(gameObject);
+       
     }
 
     private IEnumerator Explode()

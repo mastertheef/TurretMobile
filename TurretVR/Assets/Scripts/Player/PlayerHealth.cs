@@ -3,28 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
-
-    float hitPoints;
-    float shield;
-    [SerializeField] float maxHitPoints;
-    [SerializeField] float maxShield;
+public class PlayerHealth : Health
+{
     [SerializeField] float restoreShieldDelay;
     [SerializeField] float restoreShieldSpeed;
     [SerializeField] Slider hitPointsSlider;
     [SerializeField] Slider shieldSlider;
 
     private Coroutine shieldRestoration;
-    private bool isDead = false;
-
+   
     public float HitPoints { get { return hitPoints; } }
 
 	// Use this for initialization
 	void Start () {
         hitPointsSlider.maxValue = maxHitPoints;
         shieldSlider.maxValue = maxShield;
-        hitPoints = maxHitPoints;
-        shield = maxShield;
+        base.Start();
     }
 	
 	// Update is called once per frame
@@ -34,39 +28,6 @@ public class PlayerHealth : MonoBehaviour {
             shieldRestoration = StartCoroutine(RestoreShield());
         }
 	}
-
-    public void TakeDamage(float damage)
-    {
-        if (shield > 0)
-        {
-            if (shield >= damage)
-            {
-                shield -= damage;
-            }
-            else
-            {
-                damage = damage - shield;
-                shield = 0;
-                hitPoints -= damage;
-                DieIfNoHP();
-            }
-        }
-        else
-        {
-            hitPoints -= damage;
-            DieIfNoHP();
-        }
-    }
-
-    private void DieIfNoHP()
-    {
-        if (hitPoints <= 0)
-        {
-            hitPoints = 0;
-            StartCoroutine(Die()); ;
-        }
-    }
-
 
     private IEnumerator RestoreShield()
     {
@@ -78,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    private IEnumerator Die()
+    protected override IEnumerator Die()
     {
         isDead = true;
         var camera = GameManager.Instance.GameCamera;
@@ -103,11 +64,11 @@ public class PlayerHealth : MonoBehaviour {
             shieldRestoration = null;
         }
 
-        if (collision.gameObject.tag == "EnemyLaser" || collision.gameObject.tag == "BossRocket")
-        {
-            float damage = collision.gameObject.GetComponent<Projectile>().Damage;
-            TakeDamage(damage);
-        }
+        //if (collision.gameObject.tag == "EnemyLaser" || collision.gameObject.tag == "BossRocket")
+        //{
+        //    float damage = collision.gameObject.GetComponent<Projectile>().Damage;
+        //    TakeDamage(damage);
+        //}
         else if (collision.gameObject.tag == "EnemyShip" ||
                  collision.gameObject.tag == "EnemyPart" ||
                  collision.gameObject.tag == "Asteroid" ||

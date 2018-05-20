@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 114430997070385602}
   - component: {fileID: 114991691306571252}
   - component: {fileID: 96793475217338422}
+  - component: {fileID: 114373447009681636}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: EnemyShip
@@ -431,6 +432,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 912b5bfdbe1c146439fff4e3cbf317f7, type: 2}
   m_StaticBatchInfo:
@@ -465,6 +467,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f3a287ca95249ff44ba8dbda811834dd, type: 2}
   m_StaticBatchInfo:
@@ -499,6 +502,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 912b5bfdbe1c146439fff4e3cbf317f7, type: 2}
   m_StaticBatchInfo:
@@ -533,6 +537,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 011939bae1b70a048b4cc90765dcb95e, type: 2}
   m_StaticBatchInfo:
@@ -567,6 +572,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 79d358799bd40c4478ce92d483832e0b, type: 2}
   m_StaticBatchInfo:
@@ -601,6 +607,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 7808b0d51b5746347925dc9db9a66567, type: 2}
   m_StaticBatchInfo:
@@ -635,6 +642,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 9a10f5db5ba49ca4ca1388ac31d0ecb1, type: 2}
   m_StaticBatchInfo:
@@ -669,6 +677,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 13b3cb552165e754caab4236a9b7a238, type: 2}
   m_StaticBatchInfo:
@@ -703,6 +712,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: dde28102d0e5b5d4ebe92d4e51b6ecbd, type: 2}
   m_StaticBatchInfo:
@@ -737,6 +747,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: dde28102d0e5b5d4ebe92d4e51b6ecbd, type: 2}
   m_StaticBatchInfo:
@@ -1132,6 +1143,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: ef86c6f69dea6b741a2f77ef1b37157a, type: 2}
   m_StaticBatchInfo:
@@ -1160,18 +1172,24 @@ TrailRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
+      - serializedVersion: 3
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - serializedVersion: 2
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.94826967
         value: 0.3216381
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -1309,6 +1327,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc22683efa369f243bc0e22310a6d2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114373447009681636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516568694142898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6068d564142ced469d788380f5072e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 20
+  maxShield: 0
 --- !u!114 &114430997070385602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1323,7 +1354,6 @@ MonoBehaviour:
   explosion: {fileID: 114292143389242480, guid: a6596973493ce074b9048e997bc1f3bf,
     type: 2}
   newExplosion: {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
-  hitPoints: 20
   moveSpeed: 0.05
   score: 10
   addSeconds: 10

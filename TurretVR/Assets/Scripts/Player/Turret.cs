@@ -68,18 +68,14 @@ public class Turret : Singleton<Turret>
     public float ProjectileAdditionalScale { get; set; }
 
     private F3DFXController fxController;
+    private CannonController cannonController;
     // Use this for initialization
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         fxController = GetComponent<F3DFXController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        cannonController = GetComponent<CannonController>();
     }
 
     private void FixedUpdate()
@@ -91,14 +87,16 @@ public class Turret : Singleton<Turret>
                 // StartCoroutine(PlayStartShootAndWait());
                 //StartFiring();
                 isFiring = true;
-                fxController.Fire();
+                //fxController.Fire();
+                cannonController.StartFire();
             }
 
             if (!Input.GetMouseButton(0) && isFiring)
             {
                 //StopFiring();
                 isFiring = false;
-                fxController.Stop();
+                //fxController.Stop();
+                cannonController.StopFire();
             }
         }
         else
@@ -171,12 +169,6 @@ public class Turret : Singleton<Turret>
 
     public void StopFiring()
     {
-        
-        //CancelInvoke("FireLeft");
-        //CancelInvoke("FireRight");
-
-        //StartCoroutine(ShootingDelay());
-
         F3DFXController.instance.Stop();
     }
 
@@ -185,32 +177,5 @@ public class Turret : Singleton<Turret>
         canFire = false;
         yield return new WaitForSeconds(ShootCounter);
         canFire = true;
-    }
-
-    private void FireProjectile(GameObject Cannon)
-    {
-        Projectile proj = Instantiate(Shot, Cannon.transform.position, transform.rotation);
-        ApplyProjectileModifiers(proj);
-        proj.Fire();
-    }
-
-    private void FireLeft()
-    {
-        Projectile proj = Instantiate(Shot, CannonLeft.transform.position, transform.rotation);
-        ApplyProjectileModifiers(proj);
-        proj.Fire();
-    }
-
-    private void FireRight()
-    {
-        Projectile proj = Instantiate(Shot, CannonRight.transform.position, transform.rotation);
-        ApplyProjectileModifiers(proj);
-        proj.Fire(); ;
-    }
-
-    private void ApplyProjectileModifiers(Projectile proj)
-    {
-        proj.AddDamage = ProjectileAdditionalDamage;
-        proj.transform.localScale += new Vector3(ProjectileAdditionalScale, ProjectileAdditionalScale, ProjectileAdditionalScale);
     }
 }

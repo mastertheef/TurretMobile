@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Explosion explosion;
     [SerializeField] private Transform newExplosion;
-    [SerializeField] protected float hitPoints = 12;
     [SerializeField] protected float moveSpeed = 0.05f;
     [SerializeField] protected int score = 5;
     [SerializeField] protected float addSeconds = 1;
@@ -50,25 +49,6 @@ public class Enemy : MonoBehaviour
 
             GiveResource();
         }
-    }
-
-    protected void ExplodeIfKilled()
-    {
-        if (hitPoints <= 0 && !isExploded)
-        {
-            Die();
-        }
-    }
-
-    public virtual void TakeDamage(Collider collider)
-    {
-        var projectile = collider.gameObject.GetComponent<Projectile>();
-        hitPoints -= projectile.Damage;
-    }
-
-    public virtual void TakeDamage(float damage)
-    {
-        hitPoints -= damage;
     }
 
     private void GiveResource()

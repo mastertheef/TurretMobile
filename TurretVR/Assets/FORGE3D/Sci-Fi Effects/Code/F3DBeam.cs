@@ -219,10 +219,10 @@ namespace Forge3D
 
             if (hitPoint.transform.gameObject != null)
             {
-                var enemy = hitPoint.transform.gameObject.GetComponentInParent<Enemy>();
-                if (enemy != null)
+                var Health = hitPoint.transform.gameObject.GetComponentInParent<Health>();
+                if (Health != null)
                 {
-                    enemy.TakeDamage(damage);
+                    Health.TakeDamage(damage);
                 }
             }
         }

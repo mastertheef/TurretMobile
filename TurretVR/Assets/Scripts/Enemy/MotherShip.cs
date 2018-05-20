@@ -143,7 +143,7 @@ public class MotherShip : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Laser" || collision.gameObject.tag == "Rocket")
         {
-            var damage = collision.gameObject.GetComponent<Projectile>().Damage;
+            var damage = 10;// collision.gameObject.GetComponent<Projectile>().Damage;
 
             if (energyShield > 0)
             {
@@ -224,16 +224,17 @@ public class MotherShip : MonoBehaviour {
 
     private IEnumerator Shoot()
     {
-        foreach (var cannon in rocketCannons)
-        {
-            var r = Instantiate(rocket, cannon.transform.position, Quaternion.identity);
-            var shootPosition = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+        //foreach (var cannon in rocketCannons)
+        //{
+        //    var r = Instantiate(rocket, cannon.transform.position, Quaternion.identity);
+        //    var shootPosition = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
 
-            r.transform.rotation = Quaternion.LookRotation(shootPosition - r.transform.position);
-            r.ReduceSeconds = 5;
-            r.Fire();
-            yield return new WaitForSeconds(rocketLaunchDelay);
-        }
+        //    r.transform.rotation = Quaternion.LookRotation(shootPosition - r.transform.position);
+        //    r.ReduceSeconds = 5;
+        //    r.Fire();
+        //    yield return new WaitForSeconds(rocketLaunchDelay);
+        //}
+        return null;
     }
 
 }
