@@ -61,23 +61,14 @@ public class EnemyShip : Enemy {
 
     private void Shoot()
     {
-        if (shootTimer > shootDelay && isInFront() && Vector3.Distance(transform.position, player.position) <= shootDistance)
+        var target = GetNearestTarget();
+
+        if (shootTimer > shootDelay && isInFront() && Vector3.Distance(transform.position, target) <= shootDistance)
         {
             cannonController.StartFire();
             shootTimerId = F3DTime.time.AddTimer(shootingTime, stopFiring);
-            //var target = GetNearestTarget();
-            //Projectile l = Instantiate(laser, cannons[Random.Range(0, cannons.Length - 1)].transform.position, transform.rotation);
-            //l.ReduceSeconds = reduceSeconds;
-            //var targetRange = new Vector3(target.x + Random.Range(shootScatter * -1, shootScatter), target.y + Random.Range(shootScatter * -1, shootScatter), target.z);
-            //l.transform.LookAt(targetRange);
-            ////l.transform.LookAt(target);
-            //l.Fire();
             shootTimer = 0;
         }
-        //else
-        //{
-        //    cannonController.StopFire();
-        //}
     }
 
     private void stopFiring()

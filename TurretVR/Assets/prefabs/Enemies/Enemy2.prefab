@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114759570825073888}
   - component: {fileID: 96150632057345402}
   - component: {fileID: 114634403914528262}
+  - component: {fileID: 114932861257717374}
   m_Layer: 8
   m_Name: Enemy2
   m_TagString: EnemyShip
@@ -513,6 +514,7 @@ MonoBehaviour:
   flyAwayDistance: 600
   shootDistance: 300
   shootDelay: 5
+  shootingTime: 2
 --- !u!114 &114732627278209958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -585,6 +587,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114932861257717374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373699732799560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c967a960f6699864fb0c7c08e80e0654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannons:
+  - Damage: 3
+    ProjectileSpeed: 300
+    FireSpeed: 0.1
+    cannon: {fileID: 114142014471362648, guid: a0608a644e78a8442b793f23c5767037, type: 2}
+  Sockets:
+  - {fileID: 4788287115274004}
+  - {fileID: 4842778392654350}
+  currentCannon: 0
 --- !u!114 &114961851430569180
 MonoBehaviour:
   m_ObjectHideFlags: 1
