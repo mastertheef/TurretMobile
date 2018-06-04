@@ -9,6 +9,7 @@ public class CannonController : MonoBehaviour {
     [SerializeField] Transform[] Sockets;
 
     public int currentCannon = 0;
+    public int currentBeamCannon = 6;
     private int curSocket = 0;
     private int timerId = -1;
 
@@ -16,17 +17,29 @@ public class CannonController : MonoBehaviour {
     {
         foreach (var cannon in cannons)
         {
-            cannon.cannon.damage = cannon.Damage;
+            cannon.cannon.Damage = cannon.Damage;
             cannon.cannon.fireSpeed = cannon.FireSpeed;
-            cannon.cannon.projectileSpeed = cannon.ProjectileSpeed;
+            cannon.cannon.ProjectileSpeed = cannon.ProjectileSpeed;
         }
     }
 
     public void StartFire()
     {
+        
         Fire();
         timerId = F3DTime.time.AddTimer(cannons[currentCannon].FireSpeed, Fire);
+        
     }
+
+    public float BeamStartFire()
+    {
+        for (int i = 0; i< Sockets.Length; i++)
+        {
+            cannons[currentBeamCannon].cannon.Fire(Sockets[i]);
+        }
+        return (cannons[currentBeamCannon].cannon as BeamCannon).Duration;
+    }
+
 
     private void Fire()
     {

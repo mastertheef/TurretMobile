@@ -22,7 +22,7 @@ public class LaserBeamController : Singleton<LaserBeamController> {
     private Coroutine blinking;
     private Image currentCharge;
     private List<Image> chargeImages;
-    private F3DFXController fxController;
+    private CannonController cannonController;
 
 
     // Use this for initialization
@@ -33,7 +33,7 @@ public class LaserBeamController : Singleton<LaserBeamController> {
         {
              chargeImages.Add(Instantiate(ChareImagePrefab, ChargesPanel));
         }
-        fxController = GetComponent<F3DFXController>();
+        cannonController = GetComponent<CannonController>();
     }
 	
 	// Update is called once per frame
@@ -50,12 +50,9 @@ public class LaserBeamController : Singleton<LaserBeamController> {
     {
         LaserCharges--;
         isFiring = true;
-        //lasers.ForEach(x => x.Fire());
-        fxController.FireLaser();
-        yield return new WaitForSeconds(ChargeDuration);
-        //lasers.ForEach(x => x.StopFire());
-        //fxController.StopLaser();
-
+        var duration = cannonController.BeamStartFire();
+        yield return new WaitForSeconds(duration);
+       
         isFiring = false;
         StopCoroutine(blinking);
         chargeImages.Remove(currentCharge);

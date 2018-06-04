@@ -55,6 +55,4 @@ MonoBehaviour:
     type: 2}
   muzzlePrefab: {fileID: 4100477078303798, guid: 12a0db83df5e66342ab9d2d3b579bda2,
     type: 2}
-  damage: 1
-  projectileSpeed: 170
   fireSpeed: 0.05

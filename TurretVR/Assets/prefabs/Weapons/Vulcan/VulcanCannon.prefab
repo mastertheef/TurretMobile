@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1035065470050354}
+  m_RootGameObject: {fileID: 1373548966994252}
   m_IsPrefabParent: 1
---- !u!1 &1035065470050354
+--- !u!1 &1373548966994252
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4280465229120694}
-  - component: {fileID: 114038982323109764}
+  - component: {fileID: 4006048321663086}
+  - component: {fileID: 114142014471362648}
   m_Layer: 0
-  m_Name: SoloCannon
+  m_Name: VulcanCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4280465229120694
+--- !u!4 &4006048321663086
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1035065470050354}
+  m_GameObject: {fileID: 1373548966994252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +40,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114038982323109764
+--- !u!114 &114142014471362648
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1035065470050354}
+  m_GameObject: {fileID: 1373548966994252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89d2c7269a65a147b0649916edb1379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 114865361882516200, guid: f1c9989817be6b54b808a8746e55f2de,
+  projectilePrefab: {fileID: 114141205515400670, guid: 2ef9309add6ff3942b75d92ae254be86,
     type: 2}
-  muzzlePrefab: {fileID: 4959723961433042, guid: f519c8d48b0ecd44f8f50fc6e4b1afbe,
+  muzzlePrefab: {fileID: 4131449616638340, guid: 7eaae49e7af164444a822605af3ab9a2,
     type: 2}
-  damage: 2
-  projectileSpeed: 200
   fireSpeed: 0.05

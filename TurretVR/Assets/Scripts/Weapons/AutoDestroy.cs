@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class AutoDestroy : MonoBehaviour {
 
-    [SerializeField] float TTL;
+    [SerializeField] float ttl;
+    public float TTL { get { return ttl; } }
+
     int timerId = -1;
 
 	// Use this for initialization
 	void Start () {
-        timerId = F3DTime.time.AddTimer(TTL, SeldDestruct);
+        timerId = F3DTime.time.AddTimer(ttl, SeldDestruct);
 	}
 	
 	private void SeldDestruct()

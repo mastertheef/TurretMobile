@@ -1322,6 +1322,22 @@ MonoBehaviour:
     ProjectileSpeed: 300
     FireSpeed: 0.1
     cannon: {fileID: 114142014471362648, guid: a0608a644e78a8442b793f23c5767037, type: 2}
+  - Damage: 1
+    ProjectileSpeed: 150
+    FireSpeed: 0.15
+    cannon: {fileID: 114038982323109764, guid: 3757976338131da43a3145fa2c1a3b6f, type: 2}
+  - Damage: 2
+    ProjectileSpeed: 170
+    FireSpeed: 0.15
+    cannon: {fileID: 114895846320744500, guid: 09d46d937d3cf114e9b6afb1056aecda, type: 2}
+  - Damage: 5
+    ProjectileSpeed: 200
+    FireSpeed: 0.11
+    cannon: {fileID: 114507800766360366, guid: cda30bcf281ec2344aefecffe57a40e4, type: 2}
+  - Damage: 2
+    ProjectileSpeed: 200
+    FireSpeed: 0.12
+    cannon: {fileID: 114901842833355038, guid: f6630f5d38ddbca4bbdbb2d954e99995, type: 2}
   Sockets:
   - {fileID: 4572765497810824}
   - {fileID: 4234409092094650}

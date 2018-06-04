@@ -35,6 +35,8 @@ namespace Forge3D
 
         public float damage = 50f;
 
+        public System.Action<RaycastHit> ContactAction;
+
         void Awake()
         {
             // Get line renderer component
@@ -97,15 +99,6 @@ namespace Forge3D
                 // Spawn prefabs and apply force
                 switch (fxType)
                 {
-                    //case F3DFXType.Sniper:
-                    //    F3DFXController.instance.SniperImpact(hitPoint.point + hitPoint.normal*fxOffset);
-                    //    ApplyForce(4f);
-                    //    break;
-
-                    //case F3DFXType.RailGun:
-                    //    F3DFXController.instance.RailgunImpact(hitPoint.point + hitPoint.normal*fxOffset);
-                    //    ApplyForce(7f);
-                    //    break;
 
                     case F3DFXLaserType.PlasmaBeam:
                         ApplyForce(0.5f);
@@ -217,14 +210,9 @@ namespace Forge3D
             //if (hitPoint.rigidbody != null)
             //    hitPoint.rigidbody.AddForceAtPosition(transform.forward * force, hitPoint.point, ForceMode.VelocityChange);
 
-            if (hitPoint.transform.gameObject != null)
-            {
-                var Health = hitPoint.transform.gameObject.GetComponentInParent<Health>();
-                if (Health != null)
-                {
-                    Health.TakeDamage(damage);
-                }
-            }
+            
+
+            ContactAction(hitPoint);
         }
 
         // Set offset of impact

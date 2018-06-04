@@ -10,5 +10,4 @@ public class CannonInfo  {
     public float FireSpeed;
 
     public AutoCannon cannon;
-
 }
