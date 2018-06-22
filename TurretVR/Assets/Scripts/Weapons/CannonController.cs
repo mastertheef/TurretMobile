@@ -25,10 +25,8 @@ public class CannonController : MonoBehaviour {
 
     public void StartFire()
     {
-        
         Fire();
         timerId = F3DTime.time.AddTimer(cannons[currentCannon].FireSpeed, Fire);
-        
     }
 
     public float BeamStartFire()

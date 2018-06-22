@@ -64,6 +64,6 @@ public class RepareModel : MonoBehaviour {
 
     private void FixOrHarvest(RaycastHit hitPoint)
     {
-
+       // if (hitPoint.)
     }
 }

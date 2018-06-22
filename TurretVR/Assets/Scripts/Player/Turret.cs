@@ -28,6 +28,7 @@ public class Turret : Singleton<Turret>
     private bool isFiring;
     private bool isDamaged = false;
     private bool laserBeamStarted = false;
+    private bool isInBattleMode = true;
 
     private List<LaserBeam> laserBeams;
 
@@ -67,14 +68,12 @@ public class Turret : Singleton<Turret>
 
     public float ProjectileAdditionalScale { get; set; }
 
-    private F3DFXController fxController;
     private CannonController cannonController;
     // Use this for initialization
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        fxController = GetComponent<F3DFXController>();
         cannonController = GetComponent<CannonController>();
     }
 
@@ -82,39 +81,43 @@ public class Turret : Singleton<Turret>
     {
         if (!SystemInfo.supportsGyroscope)
         {
-            if (Input.GetMouseButton(0) && CanFire && !isFiring)
+            if (GameManager.Instance.IsInBattleMode)
             {
-                // StartCoroutine(PlayStartShootAndWait());
-                //StartFiring();
-                isFiring = true;
-                //fxController.Fire();
-                cannonController.StartFire();
-            }
+                if (Input.GetMouseButton(0) && CanFire && !isFiring)
+                {
+                    isFiring = true;
+                    cannonController.StartFire();
+                }
 
-            if (!Input.GetMouseButton(0) && isFiring)
+                if (!Input.GetMouseButton(0) && isFiring)
+                {
+                    isFiring = false;
+                    cannonController.StopFire();
+                }
+            }
+            else
             {
-                //StopFiring();
-                isFiring = false;
-                //fxController.Stop();
-                cannonController.StopFire();
+                if (Input.GetMouseButtonUp(0) && CanFire && !isFiring)
+                {
+                    cannonController.BeamStartFire();
+                }
+
+                
             }
         }
         else
         {
             if (CrossPlatformInputManager.GetButton("Fire") && CanFire && !isFiring)
             {
-                // StartCoroutine(PlayStartShootAndWait());
                 isFiring = true;
-                //StartFiring();
-                fxController.Fire();
+                cannonController.StartFire();
 
             }
 
             if (isFiring && !CrossPlatformInputManager.GetButton("Fire"))
             {
                 isFiring = false;
-                //StopFiring();
-                fxController.Stop();
+                cannonController.StopFire();
             }
         }
     }

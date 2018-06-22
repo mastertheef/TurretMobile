@@ -40,6 +40,7 @@ public class GameManager : Singleton<GameManager>
     private int gameTime;
     private bool shipDamaged = false;
 
+
     private int activeAsteroids;
     private int activeShips;
 
@@ -73,6 +74,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public bool IsInBattleMode { get; set; }
+
     public int MaxEnemies { get { return maxActiveAsteroids + maxActiveShips + 1; } }
 
     public float SpawnDistance { get { return spawnDistance; } }
@@ -90,6 +93,7 @@ public class GameManager : Singleton<GameManager>
     // Use this for initialization
     void Start()
     {
+        IsInBattleMode = true;
         //InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
         activeAsteroids = 0;
@@ -102,7 +106,7 @@ public class GameManager : Singleton<GameManager>
     private void SpawnAsteroids()
     {
         activeAsteroids = maxActiveAsteroids;
-        for (int i = 0; i<maxActiveAsteroids; i++)
+        for (int i = 0; i < maxActiveAsteroids; i++)
         {
             Vector3 newPosition = Random.insideUnitSphere * Random.Range(50, 2000);
             Instantiate(enemies[0], newPosition, Quaternion.identity);

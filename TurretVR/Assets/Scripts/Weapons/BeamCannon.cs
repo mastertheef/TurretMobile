@@ -6,7 +6,7 @@ using UnityEngine;
 public class BeamCannon : AutoCannon {
 
     [SerializeField] GameObject beamPrefab;
-
+    [SerializeField] bool isInBattleMode = true;
     public override float Damage
     {
         get
@@ -26,7 +26,14 @@ public class BeamCannon : AutoCannon {
     public override void Fire(Transform socket)
     {
         var beam = Instantiate(beamPrefab, socket.transform.position, socket.transform.rotation, socket);
-        beam.GetComponent<F3DBeam>().ContactAction = MakeDamage;
+        if (GameManager.Instance.IsInBattleMode)
+        {
+            beam.GetComponent<F3DBeam>().ContactAction = MakeDamage;
+        }
+        else
+        {
+            beam.GetComponent<F3DBeam>().ContactAction = FixOrHarvest;
+        }
     }
 
     public void MakeDamage(RaycastHit hitPoint)
@@ -39,5 +46,10 @@ public class BeamCannon : AutoCannon {
                 Health.TakeDamage(Damage);
             }
         }
+    }
+
+    public void FixOrHarvest(RaycastHit hitPoint)
+    {
+
     }
 }
