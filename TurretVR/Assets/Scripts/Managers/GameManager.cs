@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text gameTimerLabel;
     [SerializeField] private Canvas ui;
+    [SerializeField] private bool isInBattleMode;
 
     private int asteroidsCount = 0;
     private int shipsCount = 0;
@@ -74,7 +75,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public bool IsInBattleMode { get; set; }
+    public bool IsInBattleMode { get { return isInBattleMode; } set { isInBattleMode = value; } }
+
+   
 
     public int MaxEnemies { get { return maxActiveAsteroids + maxActiveShips + 1; } }
 
@@ -93,7 +96,7 @@ public class GameManager : Singleton<GameManager>
     // Use this for initialization
     void Start()
     {
-        IsInBattleMode = true;
+        //IsInBattleMode = true;
         //InvokeRepeating("GameCountDown", 0, 1);
         CountDown = gameDuration;
         activeAsteroids = 0;

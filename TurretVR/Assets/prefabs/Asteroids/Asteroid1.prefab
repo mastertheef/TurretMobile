@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 135461965619609702}
   - component: {fileID: 114847823757295296}
   - component: {fileID: 114069507590495076}
+  - component: {fileID: 114703560628905264}
   m_Layer: 8
   m_Name: Asteroid1
   m_TagString: Asteroid
@@ -58,6 +59,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 76385e75b46010642b7dca47209259fe, type: 2}
   m_StaticBatchInfo:
@@ -114,6 +116,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 114177607189425284, guid: 3e65c66c9c2fdb74c92c07d0b3636066, type: 2}
   pointer: {fileID: 114681713635430144, guid: 36eb98476fcd8af49911cc1fecfb945e, type: 2}
+--- !u!114 &114703560628905264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240302518489500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd684b355d06df4aa3746a05ef39fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourecs:
+  - metal: 0
+    ammount: 20
+  - metal: 1
+    ammount: 5
 --- !u!114 &114847823757295296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +146,6 @@ MonoBehaviour:
   explosion: {fileID: 114496524737513250, guid: c09ec39153a2cb241a762965cdd461b2,
     type: 2}
   newExplosion: {fileID: 492552, guid: b927b2f8c04fc4f4aac5d7b91c6a8280, type: 2}
-  hitPoints: 10
   moveSpeed: 0.01
   score: 5
   addSeconds: 3

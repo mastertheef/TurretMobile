@@ -69,12 +69,14 @@ public class Turret : Singleton<Turret>
     public float ProjectileAdditionalScale { get; set; }
 
     private CannonController cannonController;
+    private FixHarvestBeam fixHarvestBeam;
     // Use this for initialization
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         cannonController = GetComponent<CannonController>();
+        fixHarvestBeam = GetComponent<FixHarvestBeam>();
     }
 
     private void FixedUpdate()
@@ -99,10 +101,8 @@ public class Turret : Singleton<Turret>
             {
                 if (Input.GetMouseButtonUp(0) && CanFire && !isFiring)
                 {
-                    cannonController.BeamStartFire();
+                    fixHarvestBeam.Fire();
                 }
-
-                
             }
         }
         else
