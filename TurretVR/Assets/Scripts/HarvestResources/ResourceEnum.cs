@@ -6,7 +6,7 @@ using System.Text;
 namespace Assets.Scripts.HarvestResources
 {
     [Serializable]
-    public enum Metal
+    public enum ResourceEnum
     {
         Fe,
         Al,
@@ -15,6 +15,11 @@ namespace Assets.Scripts.HarvestResources
         Pt,
         Zn,
         Ce,
-        Fr
+        Fr,
+        Pl,
+        Ur,
+        Diamond,
+        ArtificialDiamond,
+        BlueDiamond
     }
 }

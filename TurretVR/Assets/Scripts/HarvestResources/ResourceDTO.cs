@@ -4,6 +4,6 @@ using System;
 [Serializable]
 public class ResourceDTO
 {
-    public Metal metal;
+    public ResourceEnum metal;
     public int ammount;
 }

@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool CanFly { get { return canFly; } }
 
-    private const float lowPassFilterFactor = 0.2f;
     private float pitch, yaw;
     private Rigidbody rigidBody;
     float velocity = 0;

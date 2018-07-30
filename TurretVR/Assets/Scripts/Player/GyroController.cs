@@ -12,6 +12,9 @@ public class GyroController : MonoBehaviour
 	#region [Private fields]
 
     [SerializeField] private float maxEulerAngle = 10f;
+    [SerializeField] private float distance = 2000f;
+    [SerializeField] private RectTransform aim;
+    
    // [SerializeField] private float turretRotationLimitX = 0.05f;
 
     private bool gyroEnabled = true;
@@ -31,6 +34,10 @@ public class GyroController : MonoBehaviour
 	private bool debug = false;
     private float yaw = 0f;
     private float pitch = 0f;
+    private Vector3 aimPosition;
+    private Vector3 worldAimPosition;
+    private Quaternion playerRotation;
+    private Vector3 playerPosition;
 
     #endregion
 
@@ -60,7 +67,19 @@ public class GyroController : MonoBehaviour
            // pitch = Mathf.Clamp(pitch, -1 * maxEulerAngle, maxEulerAngle);
             transform.rotation = Quaternion.Slerp(transform.rotation, cameraBase * Quaternion.Euler(pitch, yaw, 0), lowPassFilterFactor); 
         }
-	}
+
+        worldAimPosition = transform.TransformPoint(Vector3.forward * distance);
+        aimPosition = GameManager.Instance.GameCamera.WorldToViewportPoint(worldAimPosition);
+        aimPosition.x = Mathf.Clamp(aimPosition.x, 0.03f, 0.95f);
+        aimPosition.y = Mathf.Clamp(aimPosition.y, 0.03f, 0.95f);
+        aimPosition.z = 0;
+        
+        aim.position = GameManager.Instance.GameCamera.ViewportToScreenPoint(aimPosition);
+        playerRotation = GameManager.Instance.Player.transform.rotation;
+        playerPosition = GameManager.Instance.Player.transform.position;
+        //worldAimPosition = GameManager.Instance.GameCamera.ViewportToWorldPoint(aim.position);
+        GameManager.Instance.Player.transform.rotation = Quaternion.RotateTowards(playerRotation, Quaternion.LookRotation(worldAimPosition - playerPosition), 0.8f);
+    }
 
 	#endregion
 
