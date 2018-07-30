@@ -73,15 +73,16 @@ public class FixHarvestBeam : MonoBehaviour {
 
             yield return new WaitForSeconds(duration);
             var resource = raycastHit.rigidbody.GetComponentInParent<Resource>();
+
             if (resource != null)
             {
-                resource.GiveResource();
+               var givenRes = resource.GiveResource();
+                isInprocess = false;
+                Destroy(beam);
+                raycastHit = new RaycastHit();
+                MessageText.text = string.Format("+{0} {1}", givenRes.ammount, givenRes.resource);
+                MessageText.color = Color.green;
             }
-            isInprocess = false;
-            Destroy(beam);
-            raycastHit = new RaycastHit();
-            MessageText.text = "Success";
-            MessageText.color = Color.green;
             yield return new WaitForSeconds(2);
             panel.gameObject.SetActive(false);
         }

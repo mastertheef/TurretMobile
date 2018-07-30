@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class ResourceManager : CrossSceneSingleton<ResourceManager> {
 
-    [SerializeField] private Dictionary<ResourceEnum, List<ResourceDTO>> Requirements;
+    [SerializeField] private List<Requrements> Requirements;
 
     Dictionary<ResourceEnum, int> Resources;
     private string resourceFile;
@@ -45,28 +46,18 @@ public class ResourceManager : CrossSceneSingleton<ResourceManager> {
 
     public bool ProduceResource(ResourceEnum resource, int ammountNeeded)
     {
-        var reqirements = Requirements[resource];
-        foreach (var req in reqirements)
+        var reqirements = Requirements.FirstOrDefault(x => x.Resource == resource);
+        foreach (var req in reqirements.Requirement)
         {
-            if (Resources[req.metal] < req.ammount * ammountNeeded)
+            if (Resources[req.resource] < req.ammount * ammountNeeded)
             {
                 return false;
             }
         }
 
-        reqirements.ForEach(x => Resources[x.metal] -= x.ammount * ammountNeeded);
+        reqirements.Requirement.ForEach(x => Resources[x.resource] -= x.ammount * ammountNeeded);
         Resources[resource] += ammountNeeded;
         SaveResources();
         return true;
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

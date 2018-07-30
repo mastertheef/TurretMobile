@@ -7,17 +7,21 @@ using System.Linq;
 public class Resource : MonoBehaviour {
     [SerializeField] List<ResourceDTO> resourecs;
 
-    public void GiveResource()
+    public ResourceDTO GiveResource()
     {
         if (!resourecs.Any(x=>x.ammount > 0))
         {
-            Debug.Log("Asteroid is empty");
-            return;
+            return null;
         }
 
         var resource = resourecs.First(x => x.ammount == resourecs.Max(y => y.ammount));
         var actualAmmount = Random.Range(1, resource.ammount);
         resource.ammount -= actualAmmount;
-        Debug.Log(resource.metal.ToString() + ": " + actualAmmount);
+        ResourceManager.Instance.AddResource(resource.resource, actualAmmount);
+        return new ResourceDTO
+        {
+            ammount = actualAmmount,
+            resource = resource.resource
+        };
     }
 }

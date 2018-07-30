@@ -116,19 +116,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    //private void GameCountDown()
-    //{
-    //    gameTime++;
-    //    if (--CountDown == 0)
-    //    {
-    //        CancelInvoke("GameCountDown");
-    //        SoundManager.Instance.StopMusic();
-    //        SceneController.Instance.FinalScore = Score;
-    //        SceneController.Instance.FadeAndLoadScene("Score");
-    //    };
-    //    gameTimerLabel.text = NiceTime(CountDown);
-    //}
-
     public string NiceTime(float timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60F);
