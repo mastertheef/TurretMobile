@@ -38,6 +38,7 @@ public class GyroController : MonoBehaviour
     private Vector3 worldAimPosition;
     private Quaternion playerRotation;
     private Vector3 playerPosition;
+    private Quaternion calculatedRotation;
 
     #endregion
 
@@ -52,20 +53,24 @@ public class GyroController : MonoBehaviour
 
 	protected void Update() 
 	{
+        playerRotation = GameManager.Instance.Player.transform.rotation;
+        playerPosition = GameManager.Instance.Player.transform.position;
         if (gyroEnabled)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation,
+            transform.localRotation = Quaternion.Slerp(transform.localRotation,
                 cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), lowPassFilterFactor);
 
             
         }
         else if (Input.GetKey(KeyCode.LeftAlt))
         {
-            yaw += 2 * Input.GetAxis("Mouse X");
+            yaw += Input.GetAxis("Mouse X");
            // yaw = Mathf.Clamp(yaw, -1 * maxEulerAngle, maxEulerAngle);
-            pitch += -2 * Input.GetAxis("Mouse Y");
-           // pitch = Mathf.Clamp(pitch, -1 * maxEulerAngle, maxEulerAngle);
-            transform.rotation = Quaternion.Slerp(transform.rotation, cameraBase * Quaternion.Euler(pitch, yaw, 0), lowPassFilterFactor); 
+            pitch += -1 * Input.GetAxis("Mouse Y");
+            // pitch = Mathf.Clamp(pitch, -1 * maxEulerAngle, maxEulerAngle);
+            calculatedRotation = Quaternion.Slerp(transform.localRotation, cameraBase * Quaternion.Euler(pitch, yaw, 0), lowPassFilterFactor);
+            
+            transform.localRotation = calculatedRotation;
         }
 
         worldAimPosition = transform.TransformPoint(Vector3.forward * distance);
@@ -75,8 +80,7 @@ public class GyroController : MonoBehaviour
         aimPosition.z = 0;
         
         aim.position = GameManager.Instance.GameCamera.ViewportToScreenPoint(aimPosition);
-        playerRotation = GameManager.Instance.Player.transform.rotation;
-        playerPosition = GameManager.Instance.Player.transform.position;
+        
         //worldAimPosition = GameManager.Instance.GameCamera.ViewportToWorldPoint(aim.position);
         GameManager.Instance.Player.transform.rotation = Quaternion.RotateTowards(playerRotation, Quaternion.LookRotation(worldAimPosition - playerPosition), 0.8f);
     }
