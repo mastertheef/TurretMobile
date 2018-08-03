@@ -33,7 +33,7 @@ MonoBehaviour:
     - '*SOCKET_BARREL_REPEATER'
     WeaponBarrels:
     - {fileID: 1000014067569602, guid: 30478fc63b36c9d44bab4e81e7fe3305, type: 2}
-    HasTurretScript: 1
+    HasTurretScript: 0
   - NeedLOD: 1
     Name: Turret Electric
     Base: {fileID: 1000014129005834, guid: 5e1a998a19982e641bc88af5ea7febe3, type: 2}
@@ -274,5 +274,5 @@ MonoBehaviour:
   - {fileID: 1000012461072786, guid: df2ec686ba2d29a4aa6816b3729f9ec2, type: 2}
   - {fileID: 1000012634698986, guid: e1c916487e237d24db284a05ced42030, type: 2}
   - {fileID: 1000012030464846, guid: f1dfa61b609810d41803a72dba2dce66, type: 2}
-  SelectedTurret: 4
+  SelectedTurret: 0
   WeaponSocket: '*SOCKET_WEAPON_'
