@@ -27,8 +27,10 @@ public class FixHarvestBeam : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        panel = GameObject.Find("FixHarvestPanel").GetComponent<RectTransform>();
+        MessageText = GameObject.Find("MessageText").GetComponent<Text>();
+        ProgressBar = GameObject.Find("ProgressBar").GetComponent<Slider>();
         panel.gameObject.SetActive(false);
-
     }
 	
 	// Update is called once per frame

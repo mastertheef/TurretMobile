@@ -9,11 +9,13 @@ public class MissionsManager : Singleton<MissionsManager> {
     [SerializeField] private bool canUseRockets = false;
     [SerializeField] private int startRocketsCount = 0;
     [SerializeField] private int startLaserCount = 0;
+    [SerializeField] private GameMode gameMode;
 
     public bool CanUseLaser { get { return canUseLaser; } }
     public bool CanUseRockets { get { return canUseRockets; } }
     public int StartRocketsCount { get { return startRocketsCount;  } }
     public int StartLaserCount { get { return startLaserCount; } }
+    public GameMode GameMode { get { return gameMode; } }
 
     public bool CheckAllConditions()
     {

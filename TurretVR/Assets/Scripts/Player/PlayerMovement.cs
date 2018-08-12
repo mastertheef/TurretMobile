@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         MotherShip = GameManager.Instance.MotherShip.transform;
+        speedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
         if (canFly)
         {
             speedSlider.maxValue = maxSpeed;

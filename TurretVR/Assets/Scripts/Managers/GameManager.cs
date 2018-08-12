@@ -45,10 +45,10 @@ public class GameManager : Singleton<GameManager>
     private int activeAsteroids;
     private int activeShips;
 
-    public GameObject Player { get { return player; } }
+    public GameObject Player { get { return player; } set { player = value; } }
     public GameObject MotherShip { get { return motherShip; } }
 
-    public Camera GameCamera { get { return gameCamera; } }
+    public Camera GameCamera { get { return gameCamera; } set { gameCamera = value; } }
     public Canvas UI { get { return ui; } }
 
     public int AsteroidsCount

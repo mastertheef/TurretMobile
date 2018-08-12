@@ -16,6 +16,9 @@ public class PlayerHealth : Health
 
 	// Use this for initialization
 	void Start () {
+        hitPointsSlider = GameObject.Find("HitPoints").GetComponent<Slider>();
+        shieldSlider = GameObject.Find("Shield").GetComponent<Slider>();
+
         hitPointsSlider.maxValue = maxHitPoints;
         shieldSlider.maxValue = maxShield;
         base.Start();

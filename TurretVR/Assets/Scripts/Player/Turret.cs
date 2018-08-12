@@ -6,12 +6,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Turret : Singleton<Turret>
 {
-    [Header("Prefabs")]
-    [SerializeField] private Projectile Shot;
-    [SerializeField] private GameObject CannonLeft;
-    [SerializeField] private GameObject CannonRight;
-    [SerializeField] private GameObject FireStartEffect;
-    [SerializeField] private LaserBeam LaserBeam;
 
     [Header("Shooting")]
     [SerializeField] private float shootCounter;
@@ -122,31 +116,8 @@ public class Turret : Singleton<Turret>
         }
     }
 
-    private IEnumerator PlayStartShootAndWait()
-    {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(audioSource.clip);
-        ShowFireStart();
-        yield return new WaitForSeconds(shootDelay);
-        DestroyFireStart();
-    }
 
-    private void ShowFireStart()
-    {
-        fireStartLeft = fireStartLeft == null
-           ? Instantiate(FireStartEffect, CannonLeft.transform)
-           : fireStartLeft;
-        fireStartRight = fireStartRight == null
-            ? Instantiate(FireStartEffect, CannonRight.transform)
-            : fireStartRight;
-    }
-
-    private void DestroyFireStart()
-    {
-        if (fireStartLeft != null) Destroy(fireStartLeft);
-        if (fireStartRight != null) Destroy(fireStartRight);
-    }
-
+    // dprecateed
     public void RestartIfFiring()
     {
         if (isFiring)
@@ -156,25 +127,22 @@ public class Turret : Singleton<Turret>
         }
     }
 
+    // deprecated
     public void StartFiring(float delay = 0)
     {
-
-        //if (!IsInvoking("FireLeft"))
-        //    InvokeRepeating("FireLeft", delay, ShootCounter);
-        //if (!IsInvoking("FireRight"))
-        //    InvokeRepeating("FireRight", delay + ShootCounter / 2, ShootCounter);
-
         if (!isFiring)
         {
             F3DFXController.instance.Fire();
         }
     }
 
+    // deprecated
     public void StopFiring()
     {
         F3DFXController.instance.Stop();
     }
 
+    // deprecated
     private IEnumerator ShootingDelay()
     {
         canFire = false;

@@ -14,6 +14,7 @@ public class GyroController : MonoBehaviour
     [SerializeField] private float maxEulerAngle = 10f;
     [SerializeField] private float distance = 2000f;
     [SerializeField] private RectTransform aim;
+    [SerializeField] private GameObject[] turrets;
     
    // [SerializeField] private float turretRotationLimitX = 0.05f;
 
@@ -39,6 +40,8 @@ public class GyroController : MonoBehaviour
     private Quaternion playerRotation;
     private Vector3 playerPosition;
     private Quaternion calculatedRotation;
+    private GameObject player;
+    private Camera guiCamera;
 
     #endregion
 
@@ -47,14 +50,17 @@ public class GyroController : MonoBehaviour
     protected void Start () 
 	{
         gyroEnabled = SystemInfo.supportsGyroscope;
+        aim = GameObject.Find("Aim").GetComponent<RectTransform>();
+        player = transform.parent.gameObject;
         
+        guiCamera = GameObject.Find("GUICamera").GetComponent<Camera>();
         AttachGyro();
 	}
 
-	protected void Update() 
+    protected void Update() 
 	{
-        playerRotation = GameManager.Instance.Player.transform.rotation;
-        playerPosition = GameManager.Instance.Player.transform.position;
+        playerRotation = player.transform.rotation;
+        playerPosition = player.transform.position;
         if (gyroEnabled)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation,
@@ -69,20 +75,27 @@ public class GyroController : MonoBehaviour
             pitch += -1 * Input.GetAxis("Mouse Y");
             // pitch = Mathf.Clamp(pitch, -1 * maxEulerAngle, maxEulerAngle);
             calculatedRotation = Quaternion.Slerp(transform.localRotation, cameraBase * Quaternion.Euler(pitch, yaw, 0), lowPassFilterFactor);
-            
+
             transform.localRotation = calculatedRotation;
         }
 
-        worldAimPosition = transform.TransformPoint(Vector3.forward * distance);
-        aimPosition = GameManager.Instance.GameCamera.WorldToViewportPoint(worldAimPosition);
+        worldAimPosition = transform.position + transform.forward.normalized * distance;
+        
+
+        aimPosition = guiCamera.WorldToViewportPoint(worldAimPosition);
         aimPosition.x = Mathf.Clamp(aimPosition.x, 0.03f, 0.95f);
         aimPosition.y = Mathf.Clamp(aimPosition.y, 0.03f, 0.95f);
         aimPosition.z = 0;
+
+        aim.position = guiCamera.ViewportToScreenPoint(aimPosition);
+
         
-        aim.position = GameManager.Instance.GameCamera.ViewportToScreenPoint(aimPosition);
         
-        //worldAimPosition = GameManager.Instance.GameCamera.ViewportToWorldPoint(aim.position);
-        GameManager.Instance.Player.transform.rotation = Quaternion.RotateTowards(playerRotation, Quaternion.LookRotation(worldAimPosition - playerPosition), 0.8f);
+        player.transform.rotation = Quaternion.RotateTowards(playerRotation, Quaternion.LookRotation(worldAimPosition - playerPosition), 0.8f);
+        for (int i = 0; i < turrets.Length; i++)
+        {
+            turrets[i].transform.LookAt(worldAimPosition);
+        }
     }
 
 	#endregion
