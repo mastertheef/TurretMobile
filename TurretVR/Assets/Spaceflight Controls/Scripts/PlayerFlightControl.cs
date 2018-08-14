@@ -10,8 +10,11 @@ public class PlayerFlightControl : MonoBehaviour
 	public Transform weapon_hardpoint_1; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
 	public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
 
-	//"Core Movement", "Controls for the various speeds for different operations."
-	public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
+
+    public Transform[] TurretHeads = new Transform[2];
+
+    //"Core Movement", "Controls for the various speeds for different operations."
+    public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
 	public float afterburner_speed = 40f; //Afterburner Speed", "Speed when the button for positive thrust is being held down"
 	public float slow_speed = 4f; //"Brake Speed", "Speed when the button for negative thrust is being held down"
 	public float thrust_transition_speed = 5f; //Thrust Transition Speed", "How quickly afterburners/brakes will reach their maximum effect"

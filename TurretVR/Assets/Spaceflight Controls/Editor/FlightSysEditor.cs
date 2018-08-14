@@ -45,8 +45,14 @@ public class FlightControllerEditor : Editor
 		
 		EditorGUILayout.Separator();
 		
-		flightCC.screen_clamp = EditorGUILayout.FloatField(new GUIContent("Screen Clamp (Pixels)", "Once the pointer is more than this many pixels from the center, the input in that direction(s) will be treated as the maximum value."), flightCC.screen_clamp);			
-		if (GUI.changed)
+		flightCC.screen_clamp = EditorGUILayout.FloatField(new GUIContent("Screen Clamp (Pixels)", "Once the pointer is more than this many pixels from the center, the input in that direction(s) will be treated as the maximum value."), flightCC.screen_clamp);
+        for (int i = 0; i< flightCC.TurretHeads.Length; i++)
+        {
+            flightCC.TurretHeads[i] = (Transform)EditorGUILayout.ObjectField(new GUIContent("TurretHeads", ""), flightCC.TurretHeads[i], typeof(Transform), true);
+        }
+
+        
+        if (GUI.changed)
 			EditorUtility.SetDirty (target);
 	}
 }
@@ -82,6 +88,8 @@ public class FlightCameraEditor : Editor
 		
 		cam.yawMultiplier = EditorGUILayout.FloatField(new GUIContent("Yaw Multiplier", "Affects the amount of the camera's yaw when the player turns left or right. This will usually be very small number (0.005)"), cam.yawMultiplier);			
 		
+        
+
 		if (GUI.changed)
 			EditorUtility.SetDirty (target);
 	}
