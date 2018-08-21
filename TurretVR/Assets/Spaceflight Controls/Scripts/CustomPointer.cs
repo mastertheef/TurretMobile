@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class CustomPointer : MonoBehaviour {
@@ -32,12 +33,18 @@ public class CustomPointer : MonoBehaviour {
 	public Rect deadzone_rect; //Rect representation of the deadzone.
 	
 	public static CustomPointer instance; //The instance of this class (Should only be one)
+
+
+    private Vector2 startTouch, touchDelta;
+    private bool isTouching = false;
+    Touch? controllingTouch = null;
+
+
 	// Use this for initialization
 	
 	void Awake() {	
 		pointerPosition = new Vector2 (Screen.width / 2, Screen.height / 2); //Set pointer position to center of screen
 		instance = this;
-	
 	}
 	
 	void Start () {
@@ -115,13 +122,53 @@ public class CustomPointer : MonoBehaviour {
 
             if (invert_y_axis)
                 y_axis = -y_axis;
+            #region MouseInput
+            if (Input.GetMouseButtonDown(0))
+            {
+                startTouch = Input.mousePosition;
+                isTouching = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                ResetTouch();
+            }
+
+            if (isTouching)
+            {
+                touchDelta = (Vector2)Input.mousePosition - startTouch;
+                pointerPosition += touchDelta;
+            }
+            #endregion
+
+            if (Input.touches.Length > 0)
+            {
+                controllingTouch = !controllingTouch.HasValue ? GetControlligTouch() : controllingTouch;
+                if (controllingTouch.HasValue)
+                {
+                    if (controllingTouch.Value.phase == TouchPhase.Began)
+                    {
+                        isTouching = true;
+                        startTouch = controllingTouch.Value.position;
+                    }
+                    else if (controllingTouch.Value.phase == TouchPhase.Ended || controllingTouch.Value.phase == TouchPhase.Canceled)
+                    {
+                        ResetTouch();
+                    }
+
+                    if (isTouching)
+                    {
+                        touchDelta = controllingTouch.Value.position - startTouch;
+                        pointerPosition += touchDelta / 4;
+                    }
+                }
+
+            }
+
+            // pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Horizontal"), 2),
+            // y_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Vertical"), 2));
 
 
-            pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Horizontal"), 2),
-                                               y_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Vertical"), 2));
 
-            
-            
             pointer_returns_to_center = CrossPlatformInputManager.GetAxis("Horizontal") == 0 && CrossPlatformInputManager.GetAxis("Vertical") == 0;
             
         }
@@ -159,4 +206,22 @@ public class CustomPointer : MonoBehaviour {
 			
 		}
 	}
+
+    private void ResetTouch()
+    {
+        startTouch = touchDelta = Vector2.zero;
+        isTouching = false;
+    }
+
+    private Touch? GetControlligTouch()
+    {
+        for (int i = 0; i < Input.touches.Length; i++)
+        {
+            if (!EventSystem.current.IsPointerOverGameObject(Input.touches[i].fingerId))
+            {
+                return Input.touches[i];
+            }
+        }
+        return null;
+    }
 }
