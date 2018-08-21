@@ -46,9 +46,9 @@ public class FlightControllerEditor : Editor
 		EditorGUILayout.Separator();
 		
 		flightCC.screen_clamp = EditorGUILayout.FloatField(new GUIContent("Screen Clamp (Pixels)", "Once the pointer is more than this many pixels from the center, the input in that direction(s) will be treated as the maximum value."), flightCC.screen_clamp);
-        for (int i = 0; i< flightCC.TurretHeads.Length; i++)
+        for (int i = 0; i< flightCC.turrets.Length; i++)
         {
-            flightCC.TurretHeads[i] = (Transform)EditorGUILayout.ObjectField(new GUIContent("TurretHeads", ""), flightCC.TurretHeads[i], typeof(Transform), true);
+            flightCC.turrets[i] = (Forge3D.F3DTurret)EditorGUILayout.ObjectField(new GUIContent("TurretHeads", ""), flightCC.turrets[i], typeof(Forge3D.F3DTurret), true);
         }
 
         

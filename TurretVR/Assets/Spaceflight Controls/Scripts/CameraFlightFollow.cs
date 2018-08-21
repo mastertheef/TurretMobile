@@ -60,11 +60,6 @@ public class CameraFlightFollow : MonoBehaviour {
 			newRotation = Quaternion.LookRotation(positionDifference, target.up);
 		
 		}
-        foreach (var turret in control.TurretHeads)
-        {
-            turret.LookAt(target.position);
-        }
         transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.deltaTime * rotation_tightness);
-
 	}
 }

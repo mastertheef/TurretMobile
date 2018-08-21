@@ -119,6 +119,11 @@ public class CustomPointer : MonoBehaviour {
 
             pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Horizontal"), 2),
                                                y_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Vertical"), 2));
+
+            
+            
+            pointer_returns_to_center = CrossPlatformInputManager.GetAxis("Horizontal") == 0 && CrossPlatformInputManager.GetAxis("Vertical") == 0;
+            
         }
 		
 		//If the pointer returns to the center of the screen and it's not in the deadzone...

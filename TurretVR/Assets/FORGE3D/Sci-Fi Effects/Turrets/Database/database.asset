@@ -224,6 +224,23 @@ MonoBehaviour:
     WeaponBarrels:
     - {fileID: 1000014067569602, guid: 30478fc63b36c9d44bab4e81e7fe3305, type: 2}
     HasTurretScript: 0
+  - NeedLOD: 0
+    Name: Turret Repeater (1)
+    Base: {fileID: 0}
+    Swivel: {fileID: 0}
+    SwivelPrefix: '*SOCKET_SWIVEL_'
+    Head: {fileID: 0}
+    HeadPrefix: '*SOCKET_HEAD_'
+    Mount: {fileID: 0}
+    MountPrefix: '*SOCKET_MOUNT_'
+    Breech: {fileID: 0}
+    BarrelPrefix: '*SOCKET_'
+    WeaponSlotsNames: []
+    WeaponSlots: []
+    WeaponBreeches: []
+    WeaponBarrelSockets: []
+    WeaponBarrels: []
+    HasTurretScript: 0
   Bases:
   - {fileID: 1000014129005834, guid: 5e1a998a19982e641bc88af5ea7febe3, type: 2}
   - {fileID: 1000011917176862, guid: 192743aa007eb85479480f7db3f1ff5d, type: 2}
