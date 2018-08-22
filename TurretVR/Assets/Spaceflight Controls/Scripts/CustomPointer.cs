@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class CustomPointer : MonoBehaviour {
@@ -38,6 +39,7 @@ public class CustomPointer : MonoBehaviour {
     private Vector2 startTouch, touchDelta;
     private bool isTouching = false;
     Touch? controllingTouch = null;
+    Text tapCount;
 
 
 	// Use this for initialization
@@ -65,8 +67,9 @@ public class CustomPointer : MonoBehaviour {
 			
 		if (!use_mouse_input && !use_gamepad_input && !use_mobile_input)
 			Debug.LogError("(FlightControls) No input method selected! See the Custom Pointer script on the Main Camera and select either mouse or gamepad.");
-			
 
+        tapCount = GameObject.Find("TapCount").GetComponent<Text>();
+        tapCount.text = "Found: 0";
 	}
 	
 	// Update is called once per frame
@@ -143,6 +146,7 @@ public class CustomPointer : MonoBehaviour {
             if (Input.touches.Length > 0)
             {
                 controllingTouch = !controllingTouch.HasValue ? GetControlligTouch() : controllingTouch;
+                tapCount.text = "Found: " + Input.touches.Length + "; controlling touch found: " + controllingTouch.HasValue + " isTouching: " + isTouching;
                 if (controllingTouch.HasValue)
                 {
                     if (controllingTouch.Value.phase == TouchPhase.Began)
@@ -161,7 +165,10 @@ public class CustomPointer : MonoBehaviour {
                         pointerPosition += touchDelta / 4;
                     }
                 }
-
+            }
+            else {
+                isTouching = false;
+                tapCount.text = "Found: " + Input.touches.Length;
             }
 
             // pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(CrossPlatformInputManager.GetAxis("Horizontal"), 2),
@@ -209,6 +216,7 @@ public class CustomPointer : MonoBehaviour {
 
     private void ResetTouch()
     {
+        controllingTouch = null;
         startTouch = touchDelta = Vector2.zero;
         isTouching = false;
     }
