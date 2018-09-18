@@ -27,6 +27,7 @@ TagManager:
   - SpaceScene_Planet
   - SpaceScene_Camera
   - SpaceScene_LocalStar
+  - UI
   layers:
   - Default
   - TransparentFX
