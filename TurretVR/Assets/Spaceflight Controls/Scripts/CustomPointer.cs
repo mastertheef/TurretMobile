@@ -47,6 +47,7 @@ public class CustomPointer : MonoBehaviour
 
     Toggle pointerFormulaToggle;
 
+    private Vector2 oldPointerPosition, newPointerPosition, pointerShift;
     // Use this for initialization
 
     void Awake()
@@ -101,20 +102,38 @@ public class CustomPointer : MonoBehaviour
             {
                 mouseStart = Input.mousePosition;
                 isTouching = true;
+                oldPointerPosition = newPointerPosition = Input.mousePosition;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
                 mouseStart = mouseDelta = Vector2.zero;
                 isTouching = false;
+
+                newPointerPosition = oldPointerPosition = Vector2.zero;
             }
 
             if (Input.GetMouseButton(0))
             {
+                oldPointerPosition = newPointerPosition;
+                newPointerPosition = (Vector2)Input.mousePosition;
                 mouseDelta = (Vector2)Input.mousePosition - mouseStart;
+
+                var temp = (newPointerPosition - oldPointerPosition);
+                Debug.Log("Before: " + temp.ToString());
+                var maxSpeed = 50;
+                var pointerDiff = new Vector2(Mathf.Clamp(temp.x, -maxSpeed, maxSpeed) / maxSpeed, Mathf.Clamp(temp.y, -maxSpeed, maxSpeed) / maxSpeed);
+
+
+                pointerShift = new Vector2(
+                    (float)Math.Sin(pointerDiff.x*1.5),
+                    (float)Math.Sin(pointerDiff.y*1.5)) * 2;
+
+                Debug.Log("Shift: " + (pointerShift * maxSpeed).ToString());
+
                 pointerPosition = pointerFormulaToggle.isOn
                     ? pointerStart + mouseDelta * 5 // linear
-                    : pointerStart + mouseDelta * mouseDelta * mouseDelta.normalized / 20; // square
+                    : pointerPosition + pointerShift * maxSpeed; // square
 
 
                  //pointerStart + mouseDelta * mouseDelta * mouseDelta.normalized / 20;
@@ -266,4 +285,5 @@ public class CustomPointer : MonoBehaviour
 
         return null;
     }
+
 }
