@@ -103,7 +103,7 @@ MonoBehaviour:
     type: 2}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1280
 --- !u!114 &114999132937658524
 MonoBehaviour:
   m_ObjectHideFlags: 1

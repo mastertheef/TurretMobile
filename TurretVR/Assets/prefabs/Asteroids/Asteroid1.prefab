@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114847823757295296}
   - component: {fileID: 114069507590495076}
   - component: {fileID: 114703560628905264}
+  - component: {fileID: 114351869005243196}
   m_Layer: 8
   m_Name: Asteroid1
   m_TagString: Asteroid
@@ -116,6 +117,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 114177607189425284, guid: 3e65c66c9c2fdb74c92c07d0b3636066, type: 2}
   pointer: {fileID: 114681713635430144, guid: 36eb98476fcd8af49911cc1fecfb945e, type: 2}
+--- !u!114 &114351869005243196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240302518489500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6068d564142ced469d788380f5072e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 200
+  maxShield: 0
 --- !u!114 &114703560628905264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourecs:
-  - metal: 0
+  - resource: 0
     ammount: 20
-  - metal: 1
+  - resource: 1
     ammount: 5
 --- !u!114 &114847823757295296
 MonoBehaviour:

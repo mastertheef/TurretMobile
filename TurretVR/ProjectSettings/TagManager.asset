@@ -28,6 +28,7 @@ TagManager:
   - SpaceScene_Camera
   - SpaceScene_LocalStar
   - UI
+  - MotherShip
   layers:
   - Default
   - TransparentFX

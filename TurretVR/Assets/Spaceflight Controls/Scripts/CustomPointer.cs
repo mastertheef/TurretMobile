@@ -120,7 +120,6 @@ public class CustomPointer : MonoBehaviour
                 mouseDelta = (Vector2)Input.mousePosition - mouseStart;
 
                 var temp = (newPointerPosition - oldPointerPosition);
-                Debug.Log("Before: " + temp.ToString());
                 var maxSpeed = 50;
                 var pointerDiff = new Vector2(Mathf.Clamp(temp.x, -maxSpeed, maxSpeed) / maxSpeed, Mathf.Clamp(temp.y, -maxSpeed, maxSpeed) / maxSpeed);
 
@@ -128,9 +127,6 @@ public class CustomPointer : MonoBehaviour
                 pointerShift = new Vector2(
                     (float)Math.Sin(pointerDiff.x*1.5),
                     (float)Math.Sin(pointerDiff.y*1.5)) * 2;
-
-                Debug.Log("Shift: " + (pointerShift * maxSpeed).ToString());
-
                 pointerPosition = pointerFormulaToggle.isOn
                     ? pointerStart + mouseDelta * 5 // linear
                     : pointerPosition + pointerShift * maxSpeed; // square

@@ -8,31 +8,34 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class LaserBeamController : Singleton<LaserBeamController> {
 
-    [SerializeField] private List<LaserBeam> lasers;
     [SerializeField] private int MaxLaserCharges = 3;
     [SerializeField] private float ChargeDuration = 2f;
 
-    [SerializeField] private RectTransform ChargesPanel;
+    [SerializeField] private Text ChargesCount;
     [SerializeField] private Image ChareImagePrefab;
 
-    private int LaserCharges;
+    private int laserCharges;
+
+    private int LaserCharges {
+        get { return laserCharges; }
+        set
+        {
+            laserCharges = value;
+            ChargesCount.text = laserCharges.ToString();
+        }
+    }
 
     private bool isFiring = false;
     private bool canFire = true;
     private Coroutine blinking;
     private Image currentCharge;
-    private List<Image> chargeImages;
     private CannonController cannonController;
 
 
     // Use this for initialization
     void Start () {
-        LaserCharges = MissionsManager.Instance.StartLaserCount;
-        chargeImages = new List<Image>();
-        for (int i = 0; i<LaserCharges; i++)
-        {
-             chargeImages.Add(Instantiate(ChareImagePrefab, ChargesPanel));
-        }
+        LaserCharges = MissionsManager.Instance != null? MissionsManager.Instance.StartLaserCount: 5;
+        
         cannonController = GetComponent<CannonController>();
     }
 	
@@ -40,8 +43,7 @@ public class LaserBeamController : Singleton<LaserBeamController> {
 	void Update () {
         if (CrossPlatformInputManager.GetButtonDown("Laser") && LaserCharges > 0 && !isFiring && canFire)
         {
-            currentCharge = chargeImages.Last();
-            blinking = StartCoroutine(BlinkCharge(currentCharge));
+            //blinking = StartCoroutine(BlinkCharge(currentCharge));
             StartCoroutine(FireLasers());
         }
     }
@@ -54,15 +56,8 @@ public class LaserBeamController : Singleton<LaserBeamController> {
         yield return new WaitForSeconds(duration);
        
         isFiring = false;
-        StopCoroutine(blinking);
-        chargeImages.Remove(currentCharge);
+        // StopCoroutine(blinking);
         Destroy(currentCharge.gameObject);
-    }
-
-    private void StopFiring()
-    {
-        lasers.ForEach(x => x.StopFire());
-        isFiring = false;
     }
 
     private IEnumerator BlinkCharge(Image charge)
@@ -81,7 +76,6 @@ public class LaserBeamController : Singleton<LaserBeamController> {
         if (LaserCharges < MaxLaserCharges)
         {
             LaserCharges++;
-            chargeImages.Add(Instantiate(ChareImagePrefab, ChargesPanel));
         }
     }
 }

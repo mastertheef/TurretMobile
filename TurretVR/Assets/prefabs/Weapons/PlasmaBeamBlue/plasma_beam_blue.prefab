@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1280
   fxType: 0
   OneShot: 0
   BeamFrames: []

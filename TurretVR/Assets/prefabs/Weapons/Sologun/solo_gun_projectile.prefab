@@ -353,7 +353,7 @@ MonoBehaviour:
     type: 2}
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
 --- !u!198 &198133179020290742
 ParticleSystem:
   m_ObjectHideFlags: 1
