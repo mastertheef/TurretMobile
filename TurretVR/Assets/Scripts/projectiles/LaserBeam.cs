@@ -48,6 +48,7 @@ public class LaserBeam : MonoBehaviour
 
     public void ParticleCollision(GameObject other)
     {
+        Debug.Log(other.name);
         if (other.gameObject.tag == "Boss")
         {
             collisionEvents = new List<ParticleCollisionEvent>();

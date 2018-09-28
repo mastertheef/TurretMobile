@@ -96,7 +96,7 @@ public class CustomPointer : MonoBehaviour
             //pointerPosition += new Vector2(x_axis * mouse_sensitivity_modifier,
             //                               y_axis * mouse_sensitivity_modifier);
 
-            
+
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -120,23 +120,21 @@ public class CustomPointer : MonoBehaviour
                 mouseDelta = (Vector2)Input.mousePosition - mouseStart;
 
                 var temp = (newPointerPosition - oldPointerPosition);
-                Debug.Log("Before: " + temp.ToString());
                 var maxSpeed = 50;
                 var pointerDiff = new Vector2(Mathf.Clamp(temp.x, -maxSpeed, maxSpeed) / maxSpeed, Mathf.Clamp(temp.y, -maxSpeed, maxSpeed) / maxSpeed);
 
 
                 pointerShift = new Vector2(
-                    (float)Math.Sin(pointerDiff.x*1.5),
-                    (float)Math.Sin(pointerDiff.y*1.5)) * 2;
-
-                Debug.Log("Shift: " + (pointerShift * maxSpeed).ToString());
+                    (float)Math.Sin(pointerDiff.x * Math.PI / 2)
+                    ,
+                    (float)Math.Sin(pointerDiff.y * Math.PI / 2)) * 2;
 
                 pointerPosition = pointerFormulaToggle.isOn
                     ? pointerStart + mouseDelta * 5 // linear
                     : pointerPosition + pointerShift * maxSpeed; // square
 
 
-                 //pointerStart + mouseDelta * mouseDelta * mouseDelta.normalized / 20;
+                //pointerStart + mouseDelta * mouseDelta * mouseDelta.normalized / 20;
                 //pointerPosition = pointerStart + mouseDelta * 5;
             }
 
@@ -190,7 +188,7 @@ public class CustomPointer : MonoBehaviour
                     {
                         isTouching = true;
                         startTouch = controllingTouch.Value.position;
-                        
+
                     }
                     else if (controllingTouch.Value.phase == TouchPhase.Ended || controllingTouch.Value.phase == TouchPhase.Canceled)
                     {

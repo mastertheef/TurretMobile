@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Forge3D;
 using UnityEngine;
 
 public class GenerationPoint : MonoBehaviour
@@ -8,10 +10,12 @@ public class GenerationPoint : MonoBehaviour
     [SerializeField] private float aggroRadius;
     [SerializeField] private float battleRadius;
     [SerializeField] private int enemyCount;
+    [SerializeField] private float changeTargetCooldown;
     private Transform player;
     private Transform motherShip;
     private List<Enemy> spawnedEnemies;
-    private bool isInRadius = false;
+    private List<Transform> inRadiusUnits = new List<Transform>();
+    private float changeTargetTimer;
 
     // Use this for initialization
     void Start()
@@ -24,6 +28,8 @@ public class GenerationPoint : MonoBehaviour
             int enemyIndex = Random.Range(0, enemies.Count);
             Vector3 position = transform.position + Random.insideUnitSphere * aggroRadius;
             Enemy enemy = Instantiate(enemies[enemyIndex], position, Random.rotation);
+            enemy.GetComponent<ShipMovement>().Target = transform;
+            enemy.GetComponent<EnemyShip>().Target = transform;
             enemy.SpawnPoint = this;
             spawnedEnemies.Add(enemy);
         }
@@ -31,31 +37,66 @@ public class GenerationPoint : MonoBehaviour
 
     private void Update()
     {
-        SetTarget(player);
-        SetTarget(motherShip);
+        changeTargetTimer += Time.deltaTime;
     }
 
-    private void SetTarget(Transform portentialTarget)
+    private void FixedUpdate()
     {
-        if (Vector3.Distance(portentialTarget.position, transform.position) <= aggroRadius && !isInRadius)
-        {
-            foreach (var ship in spawnedEnemies)
-            {
-                ship.GetComponent<ShipMovement>().Target = portentialTarget.transform;
-                IndicatorManager.Instance.AddIndicator(ship.transform);
-            }
-            isInRadius = true;
-        }
+        SetTarget(player, motherShip);
+    }
 
-        else if (Vector3.Distance(portentialTarget.position, transform.position) > battleRadius && isInRadius)
+    private void SetTarget(params Transform[] portentialTargets)
+    {
+        foreach (var potentialTarget in portentialTargets)
         {
-            foreach (var ship in spawnedEnemies)
+            if (!inRadiusUnits.Exists(x => x == potentialTarget) && Vector3.Distance(potentialTarget.position, transform.position) <= aggroRadius)
             {
-                ship.GetComponent<ShipMovement>().Target = transform;
-                IndicatorManager.Instance.RemoveIndicator(ship.transform);
+                if (!inRadiusUnits.Any())
+                    foreach (var ship in spawnedEnemies)
+                    {
+                        IndicatorManager.Instance.AddIndicator(ship.transform);
+                    }
+                inRadiusUnits.Add(potentialTarget);
             }
-            isInRadius = false;
+            else if (inRadiusUnits.Exists(x => x == potentialTarget) && Vector3.Distance(potentialTarget.position, transform.position) > battleRadius)
+            {
+                inRadiusUnits.Remove(potentialTarget);
+                if (!inRadiusUnits.Any())
+                    foreach (var ship in spawnedEnemies)
+                    {
+                        IndicatorManager.Instance.RemoveIndicator(ship.transform);
+                        ship.GetComponent<ShipMovement>().Target = transform;
+                        ship.GetComponent<EnemyShip>().Target = transform;
+                    }
+            }
         }
+        if (changeTargetTimer > changeTargetCooldown)
+        {
+            if (inRadiusUnits.Any())
+                foreach (var ship in spawnedEnemies)
+                {
+                    var target = GetNearestTarget(ship.transform);
+                    ship.GetComponent<ShipMovement>().Target = target;
+                    ship.GetComponent<EnemyShip>().Target = target;
+                }
+            changeTargetTimer = 0;
+        }
+    }
+
+    private Transform GetNearestTarget(Transform ship)
+    {
+        Transform closestTarget = null;
+        float closestDistance = float.MaxValue;
+        foreach (var potentialTarget in inRadiusUnits)
+        {
+            var distance = Vector3.Distance(ship.position, potentialTarget.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTarget = potentialTarget;
+            }
+        }
+        return closestTarget;
     }
 
     public void RemoveEnemy(Enemy enemy)

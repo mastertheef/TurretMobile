@@ -146,7 +146,7 @@ public class PlayerFlightControl : MonoBehaviour
 
         //Apply all these values to the rigidbody on the container.
         GetComponent<Rigidbody>().AddRelativeTorque(
-            (-pitch * turnspeed * Time.deltaTime), // - pitch because of incorrect model rotation
+            (pitch * turnspeed * Time.deltaTime), // - pitch because of incorrect model rotation
             (yaw * turnspeed * Time.deltaTime),
             (roll * turnspeed * (rollSpeedModifier / 2) * Time.deltaTime));
 

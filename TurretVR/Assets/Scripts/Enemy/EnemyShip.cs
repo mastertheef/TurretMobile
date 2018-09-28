@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShip : Enemy {
+public class EnemyShip : Enemy
+{
 
     [SerializeField] private Projectile laser;
     [SerializeField] private GameObject[] cannons;
@@ -12,7 +13,7 @@ public class EnemyShip : Enemy {
     [SerializeField] private float moveScatter = 20;
     [SerializeField] private float flyAwayDistance = 600;
 
-    [SerializeField] private float shootDistance = 300;
+    [SerializeField] private float shootDistance = 30000;
     [SerializeField] private float shootDelay = 3;
     [SerializeField] private float shootingTime = 2;
     private int shootTimerId = -1;
@@ -20,23 +21,21 @@ public class EnemyShip : Enemy {
 
     private bool canShoot = false;
     private int shootCount = 0;
-    private Transform player;
-    private Transform motherShip;
+    public Transform Target { get; set; }
     private CannonController cannonController;
-    
-    
+
     private Vector3 targetPoint;
-     
-	// Use this for initialization
-	void Start () {
-        player = GameManager.Instance.Player.transform;
-        motherShip = GameManager.Instance.MotherShip.transform;
+
+    // Use this for initialization
+    void Start()
+    {
         cannonController = GetComponent<CannonController>();
         //IndicatorManager.Instance.AddIndicator(transform);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         shootTimer += Time.deltaTime;
         //ExplodeIfKilled();
 
@@ -44,7 +43,7 @@ public class EnemyShip : Enemy {
         canShoot = (shootCount == 0 && distance <= GameManager.Instance.FirstShootDistance) ||
                    (shootCount == 1 && distance <= GameManager.Instance.SecondShootDistance);
     }
-    
+
     protected override void Explode()
     {
         base.Explode();
@@ -59,22 +58,38 @@ public class EnemyShip : Enemy {
         SpawnPoint.RemoveEnemy(this);
     }
 
+    private bool isFire;
+
     private void Shoot()
     {
-        var target = GetNearestTarget();
-
-        if (shootTimer > shootDelay && isInFront() && Vector3.Distance(transform.position, target) <= shootDistance)
+        if (isInFront(Target) && Vector3.Distance(transform.position, Target.position) <= shootDistance)
         {
-            cannonController.StartFire();
-            shootTimerId = F3DTime.time.AddTimer(shootingTime, stopFiring);
-            shootTimer = 0;
+            if (!isFire)
+            {
+                isFire = true;
+            }
+
+            if (shootTimer > shootDelay)
+            {
+                cannonController.StartFire();
+                shootTimerId = F3DTime.time.AddTimer(shootingTime, stopFiring);
+                shootTimer = 0;
+            }
+        }
+        else
+        {
+            if (isFire)
+            {
+                isFire = false;
+                stopFiring();
+            }
         }
     }
 
     private void stopFiring()
     {
-        F3DTime.time.RemoveTimer(shootTimerId);
         cannonController.StopFire();
+        F3DTime.time.RemoveTimer(shootTimerId);
     }
 
     public override void Die()
@@ -91,21 +106,10 @@ public class EnemyShip : Enemy {
         }
     }
 
-    private bool isInFront()
+    private bool isInFront(Transform target)
     {
-        return Vector3.Dot(Vector3.forward, transform.InverseTransformPoint(player.position)) > 0;
-    }
-
-    private Vector3 GetNearestTarget()
-    {
-        var playerDistance = Vector3.Distance(transform.position, player.position);
-        var motherShipDistance = Vector3.Distance(transform.position, motherShip.position);
-
-        if (motherShipDistance<= playerDistance)
-        {
-            return player.position;
-        }
-
-        return motherShip.position;
+        var targetSize = 7;
+        var shootAngle = Mathf.Rad2Deg * Mathf.Atan2(targetSize, Vector3.Distance(transform.position, target.position));
+        return Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(target.position)) < shootAngle;
     }
 }
